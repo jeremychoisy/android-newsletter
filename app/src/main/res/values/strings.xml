@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Newsletter</string>
-    <string name="categories_title">Categories</string>
+    <string name="home_subtitle">Home</string>
+    <string name="categories_subtitle">Categories</string>
+    <string name="articles_subtitle">Articles</string>
+    <string name="settings_subtitle">Settings</string>
+    <string name="favorites_subtitle">Favorites</string>
+    <string name="about_us_subtitle">About us</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_about_us">About us</string>
+    <string name="action_show_favorite">Show favorite</string>
 </resources>

@@ -15,8 +15,6 @@ import com.mbds.newsletter.data.models.Category
 
 /**
  * A simple [Fragment] subclass.
- * Use the [CategoriesFragment.newInstance] factory method to
- * create an instance of this fragment.
  */
 class CategoriesFragment : Fragment(), CategoryCallback {
     lateinit var recyclerView: RecyclerView
@@ -47,6 +45,6 @@ class CategoriesFragment : Fragment(), CategoryCallback {
     }
 
     override fun onClick(categoryName: String) {
-        (activity as? MainActivity)?.changeFragment(ListArticleFragment.newInstance(categoryName))
+        (activity as? MainActivity)?.changeFragment(ListOfArticlesFragment.newInstance(categoryName))
     }
 }

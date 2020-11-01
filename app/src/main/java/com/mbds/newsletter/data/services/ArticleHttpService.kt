@@ -66,13 +66,12 @@ class ArticleHttpService : ArticleService {
         })
     }
 
-    override fun getArticles(): List<Article> {
-        return service.list().execute().body() ?: listOf()
+    override fun getArticles(category: String): List<Article> {
+        return service.list(category).execute().body()?.articles ?: listOf()
     }
 
     companion object {
         private const val apiKey = "8261892cd50f455fb52dab184e26b748"
         private const val apiUrl = "https://newsapi.org/v2/"
     }
-
 }

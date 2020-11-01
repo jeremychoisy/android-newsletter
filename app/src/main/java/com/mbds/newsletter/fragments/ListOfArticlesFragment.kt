@@ -22,17 +22,13 @@ import kotlinx.coroutines.Dispatchers
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ListArticleFragment.newInstance] factory method to
+ * Use the [ListOfArticlesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListArticleFragment : Fragment() {
+class ListOfArticlesFragment : Fragment() {
     private lateinit var category: String
     private val repository = ArticleHttpService()
     private lateinit var adapter: ArticleAdapter
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,7 +71,7 @@ class ListArticleFragment : Fragment() {
     private fun fetchData() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data = repository.getArticles()))
+            emit(Resource.success(data = repository.getArticles(category)))
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
         }
@@ -89,8 +85,8 @@ class ListArticleFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(category: String): ListArticleFragment {
-            return ListArticleFragment().apply {
+        fun newInstance(category: String): ListOfArticlesFragment {
+            return ListOfArticlesFragment().apply {
                 this.category = category
             }
         }

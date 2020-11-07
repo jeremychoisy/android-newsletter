@@ -8,16 +8,21 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.liveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.ArticleAdapter
+import com.mbds.newsletter.adapters.ArticleCallback
+import com.mbds.newsletter.data.database.db.ArticleDatabase
 import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.data.models.Resource
 import com.mbds.newsletter.data.models.Status.*
 import com.mbds.newsletter.data.services.ArticleHttpService
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 /**
@@ -25,10 +30,18 @@ import kotlinx.coroutines.Dispatchers
  * Use the [ListOfArticlesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListOfArticlesFragment : Fragment() {
+class ListOfArticlesFragment : Fragment(), ArticleCallback {
     private lateinit var category: String
     private val repository = ArticleHttpService()
     private lateinit var adapter: ArticleAdapter
+    private lateinit var articleDB: ArticleDatabase
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (activity != null) {
+            articleDB = ArticleDatabase.getInstance((activity as MainActivity).applicationContext)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +57,7 @@ class ListOfArticlesFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
         val spinner: ProgressBar = view.findViewById(R.id.spinner)
         titleText.text = category
-        adapter = ArticleAdapter(mutableListOf())
+        adapter = ArticleAdapter(mutableListOf(), this)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.adapter = adapter
         fetchData().observe(viewLifecycleOwner, Observer {
@@ -53,7 +66,7 @@ class ListOfArticlesFragment : Fragment() {
                     SUCCESS -> {
                         recyclerView.visibility = View.VISIBLE
                         spinner.visibility = View.GONE
-                        resource.data?.let { articles -> retrieveList(articles) }
+                        resource.data?.let { articles -> setArticlesList(articles) }
                     }
                     ERROR -> {
                         recyclerView.visibility = View.VISIBLE
@@ -77,10 +90,13 @@ class ListOfArticlesFragment : Fragment() {
         }
     }
 
-    private fun retrieveList(articles: List<Article>) {
-        adapter.apply {
-            addArticles(articles)
-            notifyDataSetChanged()
+    private fun setArticlesList(articles: List<Article>) {
+        adapter.setArticles(articles)
+    }
+
+    override fun onClick(article: Article) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            articleDB.articleDao().insert(article)
         }
     }
 

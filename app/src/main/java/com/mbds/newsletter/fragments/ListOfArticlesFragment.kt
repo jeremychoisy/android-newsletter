@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.liveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.ArticleAdapter
 import com.mbds.newsletter.data.models.Article
@@ -25,14 +26,14 @@ import kotlinx.coroutines.Dispatchers
  * Use the [ListOfArticlesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListOfArticlesFragment : Fragment() {
+class ListOfArticlesFragment : Fragment(), ArticleAdapter.ArticleCallback {
     private lateinit var category: String
     private val repository = ArticleHttpService()
     private lateinit var adapter: ArticleAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list_article, container, false)
@@ -44,7 +45,7 @@ class ListOfArticlesFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
         val spinner: ProgressBar = view.findViewById(R.id.spinner)
         titleText.text = category
-        adapter = ArticleAdapter(mutableListOf())
+        adapter = ArticleAdapter(mutableListOf(),this)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.adapter = adapter
         fetchData().observe(viewLifecycleOwner, Observer {
@@ -90,5 +91,9 @@ class ListOfArticlesFragment : Fragment() {
                 this.category = category
             }
         }
+    }
+
+   override fun onClick(article: Article) {
+        (activity as? MainActivity)?.changeFragment(ArticleDetailsFragment.newInstance(article))
     }
 }

@@ -115,6 +115,7 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener{
             is CategoriesFragment -> supportActionBar?.subtitle = getString(R.string.categories_subtitle)
             is ListOfFavoriteArticlesFragment -> supportActionBar?.subtitle = getString(R.string.favorites_subtitle)
             is ListOfArticlesFragment -> supportActionBar?.subtitle = getString(R.string.articles_subtitle)
+            is ArticleDetailsFragment -> supportActionBar?.subtitle = getString(R.string.article_detail)
             is SettingsFragment -> supportActionBar?.subtitle = getString(R.string.settings_subtitle)
             is AboutUsFragment -> supportActionBar?.subtitle = getString(R.string.about_us_subtitle)
         }

@@ -3,6 +3,7 @@
     <string name="home_subtitle">Home</string>
     <string name="categories_subtitle">Categories</string>
     <string name="articles_subtitle">Articles</string>
+    <string name="article_detail">Article</string>
     <string name="settings_subtitle">Settings</string>
     <string name="favorites_subtitle">Favorites</string>
     <string name="about_us_subtitle">About us</string>

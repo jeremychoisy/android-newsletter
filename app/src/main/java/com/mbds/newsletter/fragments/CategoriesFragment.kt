@@ -9,14 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
-import com.mbds.newsletter.adapters.CategoryCallback
 import com.mbds.newsletter.adapters.CategoriesAdapter
 import com.mbds.newsletter.data.models.Category
 
 /**
  * A simple [Fragment] subclass.
  */
-class CategoriesFragment : Fragment(), CategoryCallback {
+class CategoriesFragment : Fragment(), CategoriesAdapter.CategoryCallback {
     lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(

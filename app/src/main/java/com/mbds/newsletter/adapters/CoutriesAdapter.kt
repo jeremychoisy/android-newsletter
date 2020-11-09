@@ -41,5 +41,5 @@ class CountriesAdapter(private val dataset: List<Country>, private val callback:
 }
 
 interface CountryCallback {
-    fun onClick(categoryName: String)
+    fun onClick(countryName: String)
 }

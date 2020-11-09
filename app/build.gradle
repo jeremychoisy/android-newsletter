@@ -5,12 +5,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.mbds.tpandroid"
-        minSdkVersion 23
-        targetSdkVersion 29
+        applicationId "com.mbds.newsletter"
+        minSdkVersion 21
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 

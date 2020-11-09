@@ -32,11 +32,11 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
         recyclerView = view.findViewById(R.id.recycler_view)
         val countries = listOf<Country>(
                 //Argentin
-                Country("ar","https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg"),
+                Country("ar","https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/1920px-Flag_of_Argentina.svg.png"),
                 //Allemand
                 Country("de","https://images-na.ssl-images-amazon.com/images/I/11ZRN4et7PL._AC_.jpg"),
                 //Anglais
-                Country("en","https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg"),
+                Country("en","https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg.png"),
                 //Espagnol
                 Country("es","https://images-na.ssl-images-amazon.com/images/I/31HnPyXBMGL._AC_.jpg"),
                 //Francais
@@ -46,13 +46,13 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
                 //Italien
                 Country("it","https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/langfr-225px-Flag_of_Italy.svg.png"),
                 //Pays-Bas
-                Country("nl","https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg"),
+                Country("nl","https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg.png"),
                 //Norvegien
-                Country("no","https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg"),
+                Country("no","https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg.png"),
                 //Portugais
-                Country("pt","https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg"),
+                Country("pt","https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg.png"),
                 //Russe
-                Country("ru","https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg"),
+                Country("ru","https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg.png"),
                 //Suédois
                 Country("se","https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/langfr-338px-Flag_of_Sweden.svg.png"),
                 //?

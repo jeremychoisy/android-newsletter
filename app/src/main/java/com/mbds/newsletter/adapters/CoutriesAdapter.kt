@@ -25,7 +25,7 @@ class CountriesAdapter(private val dataset: List<Country>, private val callback:
                     .into(img)
 
             root.setOnClickListener {
-                callback.onClick(item.language)
+                callback.onClick(convertCountry(item.language))
             }
         }
     }

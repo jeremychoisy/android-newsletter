@@ -31,20 +31,34 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recycler_view)
         val countries = listOf<Country>(
-                Country("ar","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTqHRYCG74D6qQ2IT6TUWpt9Mrn3iBgfS0nww&usqp=CAU"),
-                Country("de","https://i.kym-cdn.com/entries/icons/facebook/000/029/959/Screen_Shot_2019-06-05_at_1.26.32_PM.jpg"),
-                Country("en","https://upload.wikimedia.org/wikipedia/commons/0/04/Barack_Obama_Mic_Drop_2016.jpg"),
-                Country("es","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYpjMsQJvcXdh-nsUZ4J7KqVPY5165xHgycQ&usqp=CAU"),
-                Country("fr","https://www.cetim.ch/wp-content/uploads/Pages-2-et-3-1.png"),
-                Country("he","https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/6/f/c/6fc6bc1b21_50021087_albert-einstein-langue.jpg"),
-                Country("it","https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg"),
-                Country("nl","https://i.kym-cdn.com/entries/icons/facebook/000/029/959/Screen_Shot_2019-06-05_at_1.26.32_PM.jpg"),
-                Country("no","https://upload.wikimedia.org/wikipedia/commons/0/04/Barack_Obama_Mic_Drop_2016.jpg"),
-                Country("pt","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYpjMsQJvcXdh-nsUZ4J7KqVPY5165xHgycQ&usqp=CAU"),
-                Country("ru","https://www.cetim.ch/wp-content/uploads/Pages-2-et-3-1.png"),
-                Country("se","https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/6/f/c/6fc6bc1b21_50021087_albert-einstein-langue.jpg"),
-                Country("ud","https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg"),
-                Country("zh", "https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg")
+                //Argentin
+                Country("ar","https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg"),
+                //Allemand
+                Country("de","https://images-na.ssl-images-amazon.com/images/I/11ZRN4et7PL._AC_.jpg"),
+                //Anglais
+                Country("en","https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg"),
+                //Espagnol
+                Country("es","https://images-na.ssl-images-amazon.com/images/I/31HnPyXBMGL._AC_.jpg"),
+                //Francais
+                Country("fr","https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/1200px-Flag_of_France.svg.png"),
+                //?
+                //Country("he","https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/6/f/c/6fc6bc1b21_50021087_albert-einstein-langue.jpg"),
+                //Italien
+                Country("it","https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/langfr-225px-Flag_of_Italy.svg.png"),
+                //Pays-Bas
+                Country("nl","https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg"),
+                //Norvegien
+                Country("no","https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg"),
+                //Portugais
+                Country("pt","https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg"),
+                //Russe
+                Country("ru","https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg"),
+                //Suédois
+                Country("se","https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/langfr-338px-Flag_of_Sweden.svg.png"),
+                //?
+                // Country("ud","https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg"),
+                //?
+                // Country("zh", "https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg")
         )
         val adapterRecycler = CountriesAdapter(countries, this)
         recyclerView.layoutManager = LinearLayoutManager(view.context)

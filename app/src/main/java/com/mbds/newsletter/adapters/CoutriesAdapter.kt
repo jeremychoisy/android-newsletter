@@ -18,8 +18,11 @@ class CountriesAdapter(private val dataset: List<Country>, private val callback:
         fun bind(item: Country) {
             val txtTitle = root.findViewById<TextView>(R.id.title)
             val img = root.findViewById<AppCompatImageView>(R.id.image)
-            txtTitle.text = item.language
-            Glide.with(root).load(item.url).into(img)
+            txtTitle.text = convertCountry(item.language)
+
+            Glide.with(root)
+                    .load(item.url)
+                    .into(img)
 
             root.setOnClickListener {
                 callback.onClick(item.language)
@@ -42,4 +45,21 @@ class CountriesAdapter(private val dataset: List<Country>, private val callback:
 
 interface CountryCallback {
     fun onClick(countryName: String)
+}
+
+fun convertCountry(countryISO: String): String {
+    when(countryISO) {
+        "ar" -> return "Argentine"
+        "de" -> return "Allemagne"
+        "en" -> return "Anglais"
+        "es" -> return "Espagne"
+        "fr" -> return "France"
+        "it" -> return "Italie"
+        "nl" -> return "Pays-Bas"
+        "no" -> return "Norvège"
+        "pt" -> return "Portugal"
+        "ru" -> return "Russe"
+        "se" -> return "Suède"
+        else -> return ""
+    }
 }

@@ -40,11 +40,12 @@ class ArticleAdapter(private val dataSet: MutableList<Article>, private val call
 
     override fun getItemCount(): Int = dataSet.size
 
-    fun addArticles(articles: List<Article>) {
-        this.dataSet.apply {
+    fun setArticles(articles: List<Article>) {
+        this.dataSet.apply{
             clear()
             addAll(articles)
         }
+        notifyDataSetChanged()
     }
 
     interface ArticleCallback {

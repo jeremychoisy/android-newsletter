@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.ArticleAdapter
+import com.mbds.newsletter.data.database.db.ArticleDatabase
 import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.data.models.Resource
 import com.mbds.newsletter.data.models.Status.*
@@ -30,6 +31,14 @@ class ListOfArticlesFragment : Fragment(), ArticleAdapter.ArticleCallback {
     private lateinit var category: String
     private val repository = ArticleHttpService()
     private lateinit var adapter: ArticleAdapter
+    private lateinit var articleDB: ArticleDatabase
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (activity != null) {
+            articleDB = ArticleDatabase.getInstance((activity as MainActivity).applicationContext)
+        }
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +63,7 @@ class ListOfArticlesFragment : Fragment(), ArticleAdapter.ArticleCallback {
                     SUCCESS -> {
                         recyclerView.visibility = View.VISIBLE
                         spinner.visibility = View.GONE
-                        resource.data?.let { articles -> retrieveList(articles) }
+                        resource.data?.let { articles -> setArticlesList(articles) }
                     }
                     ERROR -> {
                         recyclerView.visibility = View.VISIBLE
@@ -78,11 +87,8 @@ class ListOfArticlesFragment : Fragment(), ArticleAdapter.ArticleCallback {
         }
     }
 
-    private fun retrieveList(articles: List<Article>) {
-        adapter.apply {
-            addArticles(articles)
-            notifyDataSetChanged()
-        }
+    private fun setArticlesList(articles: List<Article>) {
+        adapter.setArticles(articles)
     }
 
     companion object {

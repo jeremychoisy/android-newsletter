@@ -7,36 +7,38 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.ArticleAdapter
+import com.mbds.newsletter.data.database.dao.ArticleDao
 import com.mbds.newsletter.data.database.db.ArticleDatabase
 import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.data.models.Resource
 import com.mbds.newsletter.data.models.Status.*
 import com.mbds.newsletter.data.services.ArticleHttpService
+import com.mbds.newsletter.interfaces.ArticleCallback
 import kotlinx.coroutines.Dispatchers
-
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ListOfArticlesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListOfArticlesFragment : Fragment(), ArticleAdapter.ArticleCallback {
+class ListOfArticlesFragment : Fragment(), ArticleCallback {
     private lateinit var category: String
     private val repository = ArticleHttpService()
     private lateinit var adapter: ArticleAdapter
-    private lateinit var articleDB: ArticleDatabase
+    private lateinit var articleDAO: ArticleDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (activity != null) {
-            articleDB = ArticleDatabase.getInstance((activity as MainActivity).applicationContext)
+            val articleDB = ArticleDatabase.getInstance((activity as MainActivity).applicationContext)
+            articleDAO = articleDB.articleDao()
         }
     }
 
@@ -51,9 +53,11 @@ class ListOfArticlesFragment : Fragment(), ArticleAdapter.ArticleCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val titleText: TextView = view.findViewById(R.id.category_title)
+        val noArticleFoundText: TextView = view.findViewById(R.id.no_article_found)
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
         val spinner: ProgressBar = view.findViewById(R.id.spinner)
         titleText.text = category
+        noArticleFoundText.text = getString(R.string.no_article_found)
         adapter = ArticleAdapter(mutableListOf(),this)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.adapter = adapter
@@ -63,7 +67,14 @@ class ListOfArticlesFragment : Fragment(), ArticleAdapter.ArticleCallback {
                     SUCCESS -> {
                         recyclerView.visibility = View.VISIBLE
                         spinner.visibility = View.GONE
-                        resource.data?.let { articles -> setArticlesList(articles) }
+                        resource.data?.let { articles ->
+                            if (articles.isNotEmpty()) {
+                                noArticleFoundText.visibility = View.GONE
+                            } else {
+                                noArticleFoundText.visibility = View.VISIBLE
+                            }
+                            setArticlesList(articles)
+                        }
                     }
                     ERROR -> {
                         recyclerView.visibility = View.VISIBLE
@@ -87,6 +98,22 @@ class ListOfArticlesFragment : Fragment(), ArticleAdapter.ArticleCallback {
         }
     }
 
+    override fun getFavoriteArticles(): LiveData<List<Article>> {
+        return articleDAO.getAll()
+    }
+
+    override fun addFavoriteArticle(article: Article) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            articleDAO.insert(article)
+        }
+    }
+
+    override fun removeFavoriteArticle(article: Article) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            articleDAO.delete(article)
+        }
+    }
+
     private fun setArticlesList(articles: List<Article>) {
         adapter.setArticles(articles)
     }
@@ -99,7 +126,7 @@ class ListOfArticlesFragment : Fragment(), ArticleAdapter.ArticleCallback {
         }
     }
 
-   override fun onClick(article: Article) {
+    override fun onClick(article: Article) {
         (activity as? MainActivity)?.changeFragment(ArticleDetailsFragment.newInstance(article))
     }
 }

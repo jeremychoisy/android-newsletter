@@ -10,4 +10,6 @@
     <string name="action_settings">Settings</string>
     <string name="action_about_us">About us</string>
     <string name="action_show_favorite">Show favorite</string>
+    <string name="no_article_found">We couldn\'t find any article matching your criteria</string>
+    <string name="no_favorite_article_found">We couldn\'t find any favorite article</string>
 </resources>

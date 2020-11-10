@@ -11,11 +11,12 @@ import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.CategoriesAdapter
 import com.mbds.newsletter.data.models.Category
+import com.mbds.newsletter.interfaces.CategoryCallback
 
 /**
  * A simple [Fragment] subclass.
  */
-class CategoriesFragment : Fragment(), CategoriesAdapter.CategoryCallback {
+class CategoriesFragment : Fragment(), CategoryCallback {
     lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(

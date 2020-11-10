@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.models.Category
+import com.mbds.newsletter.interfaces.CategoryCallback
 
 class CategoriesAdapter(private val dataset: List<Category>, private val callback: CategoryCallback) :
         RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
@@ -39,9 +40,5 @@ class CategoriesAdapter(private val dataset: List<Category>, private val callbac
     }
 
     override fun getItemCount(): Int = dataset.size
-
-    interface CategoryCallback {
-        fun onClick(categoryName: String)
-    }
 }
 

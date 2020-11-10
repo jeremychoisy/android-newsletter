@@ -1,7 +1,6 @@
 package com.mbds.newsletter.fragments
 
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.models.Article
-import org.threeten.bp.LocalDate
-import org.threeten.bp.format.DateTimeFormatter
-import java.util.*
+import com.mbds.newsletter.helpers.formatDate
 
 class ArticleDetailsFragment() : Fragment() {
 
@@ -37,17 +34,12 @@ class ArticleDetailsFragment() : Fragment() {
         val articleUrl: TextView = view.findViewById(R.id.article_url)
 
         articleUrl.text = currentArticle.url
-        //articleUrl.movementMethod = LinkMovementMethod.getInstance()
         articleTitleText.text = currentArticle.title
         Glide.with(view).load(currentArticle.urlToImage).into(articleImage)
         articleDescriptionText.text = currentArticle.description
         articleContent.text = currentArticle.content
-        val test = currentArticle.publishedAt.substring(0, 10)
-        val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-        val date = LocalDate.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH))
-            .format(formatter)
-        val creditText =
-            "Published by " + currentArticle.author + "the " + date + " in the " + currentArticle.source.name
+        val date = formatDate(currentArticle.publishedAt)
+        val creditText = "Published by "+ currentArticle.author +"the "+date+" in the "+ currentArticle.source.name
         articleCreditsText.text = creditText
 
     }

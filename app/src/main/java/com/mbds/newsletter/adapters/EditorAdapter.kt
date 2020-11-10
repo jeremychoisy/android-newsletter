@@ -8,9 +8,11 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
+import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.data.models.Editor
+import com.mbds.newsletter.fragments.EditorsFragment
 
-class EditorAdapter(private val dataset: List<Editor>, private val callback: EditorCallback) :
+class EditorAdapter(private val dataSet: MutableList<Editor>, private val callback: EditorCallback) :
         RecyclerView.Adapter<EditorAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
@@ -22,7 +24,6 @@ class EditorAdapter(private val dataset: List<Editor>, private val callback: Edi
             name.text = item.name
             txtDesc.text = item.description
             language.text = item.language
-            Glide.with(root).load(item.url).into(img)
 
             root.setOnClickListener {
                 callback.onClick(item.name)
@@ -32,18 +33,28 @@ class EditorAdapter(private val dataset: List<Editor>, private val callback: Edi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val rootView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_item, parent, false)
+                .inflate(R.layout.list_editor, parent, false)
         return ViewHolder(rootView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(dataset[position])
+        holder.bind(dataSet[position])
     }
 
-    override fun getItemCount(): Int = dataset.size
+    override fun getItemCount(): Int = dataSet.size
+
+    fun setEditors(editors: List<Editor>) {
+        this.dataSet.apply{
+            clear()
+            addAll(editors)
+        }
+        notifyDataSetChanged()
+    }
 
     interface EditorCallback {
         fun onClick(categoryName: String)
     }
+
+
 }
 

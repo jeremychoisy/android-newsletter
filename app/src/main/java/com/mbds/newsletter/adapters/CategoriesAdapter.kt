@@ -12,6 +12,7 @@ import com.mbds.newsletter.data.models.Category
 
 class CategoriesAdapter(private val dataset: List<Category>, private val callback: CategoryCallback) :
         RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
+    var selectedFilter: SelectedFilter = SelectedFilter()
 
     inner class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
         fun bind(item: Category) {
@@ -23,6 +24,7 @@ class CategoriesAdapter(private val dataset: List<Category>, private val callbac
             Glide.with(root).load(item.url).into(img)
 
             root.setOnClickListener {
+                selectedFilter.list.add(item.name)
                 callback.onClick(item.name)
             }
         }

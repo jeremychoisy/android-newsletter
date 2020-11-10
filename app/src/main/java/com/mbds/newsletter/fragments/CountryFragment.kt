@@ -54,7 +54,7 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
                 //Russe
                 Country("ru","https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg.png"),
                 //Suédois
-                Country("se","https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/langfr-338px-Flag_of_Sweden.svg.png"),
+                Country("se","https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/langfr-338px-Flag_of_Sweden.svg.png")
                 //?
                 // Country("ud","https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg"),
                 //?

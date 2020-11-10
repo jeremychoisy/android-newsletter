@@ -4,28 +4,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
-import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.data.models.Editor
-import com.mbds.newsletter.fragments.EditorsFragment
 
 class EditorAdapter(private val dataSet: MutableList<Editor>, private val callback: EditorCallback) :
         RecyclerView.Adapter<EditorAdapter.ViewHolder>() {
+    var selectedFilter: SelectedFilter = SelectedFilter()
+
 
     inner class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
+
         fun bind(item: Editor) {
             val name = root.findViewById<TextView>(R.id.source_name)
             val language = root.findViewById<TextView>(R.id.source_language)
             val txtDesc = root.findViewById<TextView>(R.id.source_description)
-            val img = root.findViewById<AppCompatImageView>(R.id.image)
+            //val img = root.findViewById<AppCompatImageView>(R.id.image)
             name.text = item.name
             txtDesc.text = item.description
-            language.text = item.language
+            language.text = convertLanguage(item.language)
 
             root.setOnClickListener {
+                selectedFilter.list.add(item.name)
+                print(" tab " + selectedFilter.list + "\n")
                 callback.onClick(item.name)
             }
         }
@@ -55,6 +56,21 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
         fun onClick(categoryName: String)
     }
 
-
+    fun convertLanguage(language: String): String {
+        when(language) {
+            "ar" -> return "Argentine"
+            "de" -> return "Allemagne"
+            "en" -> return "Anglais"
+            "es" -> return "Espagne"
+            "fr" -> return "France"
+            "it" -> return "Italie"
+            "nl" -> return "Pays-Bas"
+            "no" -> return "Norvège"
+            "pt" -> return "Portugal"
+            "ru" -> return "Russe"
+            "se" -> return "Suède"
+            else -> return language
+        }
+    }
 }
 

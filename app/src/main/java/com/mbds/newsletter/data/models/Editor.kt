@@ -1,8 +1,5 @@
 package com.mbds.newsletter.data.models
 
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-
 data class Editor(
         val id: String,
         val name: String,

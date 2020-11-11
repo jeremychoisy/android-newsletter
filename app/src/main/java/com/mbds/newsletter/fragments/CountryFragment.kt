@@ -32,13 +32,14 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
         recyclerView = view.findViewById(R.id.recycler_view)
         val countries = listOf<Country>(
                 //Argentin
-                Country("ar","https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/1920px-Flag_of_Argentina.svg.png"),
+                Country("ar","https://images-na.ssl-images-amazon.com/images/I/11ZRN4et7PL._AC_.jpg"),
                 //Allemand
                 Country("de","https://images-na.ssl-images-amazon.com/images/I/11ZRN4et7PL._AC_.jpg"),
                 //Anglais
-                Country("en","https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg.png"),
+                Country("en","https://images-na.ssl-images-amazon.com/images/I/11ZRN4et7PL._AC_.jpg"),
                 //Espagnol
-                Country("es","https://images-na.ssl-images-amazon.com/images/I/31HnPyXBMGL._AC_.jpg"),
+                Country("es","https://images-na.ssl-images-amazon.com/images/I/31HnPyXBMGL._AC_.jpg")
+                        /*
                 //Francais
                 Country("fr","https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/1200px-Flag_of_France.svg.png"),
                 //?
@@ -46,11 +47,11 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
                 //Italien
                 Country("it","https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/langfr-225px-Flag_of_Italy.svg.png"),
                 //Pays-Bas
-                Country("nl","https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg.png"),
+                Country("nl","https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg"),
                 //Norvegien
-                Country("no","https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg.png"),
+                Country("no","https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg"),
                 //Portugais
-                Country("pt","https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg.png"),
+                Country("pt","https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg"),
                 //Russe
                 Country("ru","https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg.png"),
                 //Suédois
@@ -59,6 +60,8 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
                 // Country("ud","https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg"),
                 //?
                 // Country("zh", "https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg")
+
+                         */
         )
         val adapterRecycler = CountriesAdapter(countries, this)
         recyclerView.layoutManager = LinearLayoutManager(view.context)

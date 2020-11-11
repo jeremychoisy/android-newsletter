@@ -1,6 +1,6 @@
 package com.mbds.newsletter.adapters
 
-class SelectedFilter {
+object SelectedFilter {
     var list = mutableListOf<String>()
         get() =  field
 }

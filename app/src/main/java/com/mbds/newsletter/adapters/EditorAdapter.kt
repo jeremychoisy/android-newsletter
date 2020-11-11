@@ -14,7 +14,7 @@ import com.mbds.newsletter.data.models.Editor
 
 class EditorAdapter(private val dataSet: MutableList<Editor>, private val callback: EditorCallback) :
         RecyclerView.Adapter<EditorAdapter.ViewHolder>() {
-        private val selectedPosition = mutableListOf<View>()
+        private val selectedPosition = mutableListOf<Int>()
     inner class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
 
         fun bind(item: Editor) {
@@ -28,7 +28,16 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
 
             root.setOnClickListener {
                 SelectedFilter.list.add(item.name)
-                //root.findViewById<Button>(R.id.button_search).text = updateFiltreButton()
+                if(selectedPosition.contains(adapterPosition)){
+                    selectedPosition.remove(adapterPosition)
+                    root.setBackgroundColor(Color.TRANSPARENT)
+                }
+                else{
+                    selectedPosition.add(adapterPosition)
+                }
+
+                root.setBackgroundColor(Color.GREEN)
+//                root.findViewById<Button>(R.id.button_search).text = updateFiltreButton()
                 print(" tab " + SelectedFilter.list + "\n")
                 callback.onClick(item.name)
             }
@@ -44,18 +53,26 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(dataSet[position])
-        /*
-        holder.itemView.setOnClickListener {
-            print("\nselected position avant " + selectedPosition + "\n")
-            selectedPosition.add(holder.itemView)
-            //notifyDataSetChanged()
-            print("\nselected position " + selectedPosition + "\n")
-        }
-        selectedPosition.forEach {
-            it.setBackgroundColor(Color.GREEN)
-        }
+
+        println(position)
+        println(selectedPosition)
+//        holder.itemView.setOnClickListener {
+//            print("\nselected position avant " + selectedPosition + "\n")
+//            selectedPosition.add(holder.itemView)
+//            notifyDataSetChanged()
+//            print("\nselected position " + selectedPosition + "\n")
+//        }
         holder.itemView.setBackgroundColor(Color.TRANSPARENT)
-        */
+        selectedPosition.forEach {
+            if(position==it){
+                println("item pos : " + position + " selected pos : " + it)
+                holder.bind(dataSet[position])
+                holder.itemView.setBackgroundColor(Color.GREEN)
+            }
+//            it.setBackgroundColor(Color.GREEN)
+        }
+//        holder.itemView.setBackgroundColor(Color.TRANSPARENT)
+
 
     }
 

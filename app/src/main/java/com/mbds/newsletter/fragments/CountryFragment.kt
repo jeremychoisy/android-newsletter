@@ -32,36 +32,36 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
         recyclerView = view.findViewById(R.id.recycler_view)
         val countries = listOf<Country>(
                 //Argentin
-                Country("ar","https://images-na.ssl-images-amazon.com/images/I/11ZRN4et7PL._AC_.jpg"),
+                Country("ar","https://img.freepik.com/vecteurs-libre/illustration-du-drapeau-argentin_53876-27120.jpg?size=626&ext=jpg"),
                 //Allemand
                 Country("de","https://images-na.ssl-images-amazon.com/images/I/11ZRN4et7PL._AC_.jpg"),
                 //Anglais
-                Country("en","https://images-na.ssl-images-amazon.com/images/I/11ZRN4et7PL._AC_.jpg"),
+                Country("en","https://i.pinimg.com/originals/53/e8/7d/53e87dc1874e487d38eeba168d8ff54e.png"),
                 //Espagnol
-                Country("es","https://images-na.ssl-images-amazon.com/images/I/31HnPyXBMGL._AC_.jpg")
-                        /*
+                Country("es","https://images-na.ssl-images-amazon.com/images/I/31HnPyXBMGL._AC_.jpg"),
+
                 //Francais
-                Country("fr","https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/1200px-Flag_of_France.svg.png"),
+                Country("fr","https://media.onnsports.com/product/bandera-francesa-lalizas-800x800.jpg"),
                 //?
                 //Country("he","https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/6/f/c/6fc6bc1b21_50021087_albert-einstein-langue.jpg"),
                 //Italien
-                Country("it","https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/langfr-225px-Flag_of_Italy.svg.png"),
+                Country("it","https://cdn.countryflags.com/thumbs/italy/flag-400.png"),
                 //Pays-Bas
-                Country("nl","https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg"),
+                Country("nl","https://www.produire-bio.fr/wp-content/uploads/2020/04/Drapeau-NL-Pays-Bas.jpg"),
                 //Norvegien
-                Country("no","https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg"),
+                Country("no","https://cdn.countryflags.com/thumbs/norway/flag-800.png"),
                 //Portugais
-                Country("pt","https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg"),
+                Country("pt","https://cdn.webshopapp.com/shops/31683/files/191163398/image.jpg"),
                 //Russe
-                Country("ru","https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg.png"),
+                Country("ru","https://www.drapeaux-flags.com/images/drapeaux/png_norm/RU.png"),
                 //Suédois
-                Country("se","https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/langfr-338px-Flag_of_Sweden.svg.png")
+                Country("se","https://cdn.webshopapp.com/shops/94414/files/54945896/image-drapeau-suedois-telechargement-gratuit.jpg")
                 //?
                 // Country("ud","https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg"),
                 //?
                 // Country("zh", "https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg")
 
-                         */
+
         )
         val adapterRecycler = CountriesAdapter(countries, this)
         recyclerView.layoutManager = LinearLayoutManager(view.context)

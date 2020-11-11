@@ -70,6 +70,10 @@ class ArticleHttpService : ArticleService {
         return service.list(category).execute().body()?.articles ?: listOf()
     }
 
+    override fun getArticlesFiltered(category: String, sources: String): List<Article> {
+        return service.listArticlesFiltered(category, sources).execute().body()?.articles ?: listOf()
+    }
+
     companion object {
         private const val apiKey = "8261892cd50f455fb52dab184e26b748"
         private const val apiUrl = "https://newsapi.org/v2/"

@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.liveData
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.HomeAdapter
 import com.mbds.newsletter.adapters.SelectedFilter
+import com.mbds.newsletter.data.models.Resource
+import com.mbds.newsletter.data.services.ArticleHttpService
+import com.mbds.newsletter.data.services.EditorHttpService
+import kotlinx.coroutines.Dispatchers
 
 /**
  * A simple [Fragment] subclass.
@@ -19,6 +24,8 @@ import com.mbds.newsletter.adapters.SelectedFilter
 class HomeFragment : Fragment() {
     private lateinit var homeAdapter: HomeAdapter
     private lateinit var viewPager: ViewPager
+
+    private val repository = ArticleHttpService()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +46,8 @@ class HomeFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPager)
 
         view.findViewById<Button>(R.id.button_search).setOnClickListener {
-            println(createURL())
+//            println(createURL())
+            this.fetchData(createURL(), "")
         }
 
 
@@ -69,8 +77,17 @@ class HomeFragment : Fragment() {
         SelectedFilter.list.forEachIndexed { index, s ->
             url += s
             if(index < SelectedFilter.list.size-1)
-                url += "%AND%"
+                url += " AND "
         }
         return url
+    }
+
+    private fun fetchData(category: String, sources: String) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(Resource.success(data = repository.getArticlesFiltered(category, sources)))
+        } catch (exception: Exception) {
+            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+        }
     }
 }

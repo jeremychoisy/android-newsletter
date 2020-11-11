@@ -12,4 +12,7 @@ interface RetrofitApiService {
 
     @GET("sources")
     fun listEditors(): Call<EditorResponse>
+
+    @GET("everything")
+    fun listArticlesFiltered(@Query("q") category: String, @Query("sources") sources: String): Call<ArticlesResponse>
 }

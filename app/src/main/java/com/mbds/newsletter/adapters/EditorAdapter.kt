@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.models.Editor
@@ -20,21 +21,21 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
             val txtDesc = root.findViewById<TextView>(R.id.source_description)
             name.text = item.name
             txtDesc.text = item.description
-            language.text = convertLanguage(item.language)
+            language.text = "Pays : " + convertLanguage(item.language)
 
             root.setOnClickListener {
-                if(SelectedFilter.listPosition.contains(adapterPosition)){
-                    SelectedFilter.listPosition.remove(adapterPosition)
+                if(SelectedFilter.listPositionEditor.contains(adapterPosition)){
+                    SelectedFilter.listPositionEditor.remove(adapterPosition)
                     root.setBackgroundColor(Color.TRANSPARENT)
                     SelectedFilter.list.remove(item.name)
                 }
                 else{
-                    SelectedFilter.listPosition.add(adapterPosition)
+                    SelectedFilter.listPositionEditor.add(adapterPosition)
                     SelectedFilter.list.add(item.name)
                     root.setBackgroundColor(Color.GREEN)
                 }
                 print(" tab " + SelectedFilter.list + "\n")
-                print(" tabPos " + SelectedFilter.listPosition + "\n")
+                print(" tabPos " + SelectedFilter.listPositionEditor + "\n")
                 callback.onClick(item.name)
             }
         }
@@ -51,13 +52,14 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
         holder.bind(dataSet[position])
 
         println(position)
-        println(SelectedFilter.listPosition)
+        println(SelectedFilter.listPositionEditor)
 
         holder.itemView.setBackgroundColor(Color.TRANSPARENT)
-        SelectedFilter.listPosition.forEach {
+        SelectedFilter.listPositionEditor.forEach {
             if(position==it){
                 println("item pos : " + position + " selected pos : " + it)
                 holder.bind(dataSet[position])
+                //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
                 holder.itemView.setBackgroundColor(Color.GREEN)
             }
         }

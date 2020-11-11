@@ -1,5 +1,6 @@
 package com.mbds.newsletter.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.models.Category
 
-class CategoriesAdapter(private val dataset: List<Category>, private val callback: CategoryCallback) :
+class CategoriesAdapter(private val dataSet: List<Category>, private val callback: CategoryCallback) :
         RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
 
@@ -24,8 +25,17 @@ class CategoriesAdapter(private val dataset: List<Category>, private val callbac
             Glide.with(root).load(item.url).into(img)
 
             root.setOnClickListener {
-                SelectedFilter.list.add(item.name)
-                callback.onClick(item.name)
+                if(SelectedFilter.listPositionCategory.contains(adapterPosition)){
+                    SelectedFilter.listPositionCategory.remove(adapterPosition)
+                    root.setBackgroundColor(Color.TRANSPARENT)
+                    SelectedFilter.listCategoryAndCountry.remove(item.name)
+                }
+                else{
+                    SelectedFilter.listPositionCategory.add(adapterPosition)
+                    SelectedFilter.listCategoryAndCountry.add(item.name)
+                    root.setBackgroundColor(Color.GREEN)
+                }
+                //callback.onClick(item.name)
             }
         }
     }
@@ -37,10 +47,19 @@ class CategoriesAdapter(private val dataset: List<Category>, private val callbac
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(dataset[position])
+        holder.bind(dataSet[position])
+        holder.itemView.setBackgroundColor(Color.TRANSPARENT)
+        SelectedFilter.listPositionCategory.forEach {
+            if(position==it){
+                println("item pos : " + position + " selected pos : " + it)
+                holder.bind(dataSet[position])
+                //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
+                holder.itemView.setBackgroundColor(Color.GREEN)
+            }
+        }
     }
 
-    override fun getItemCount(): Int = dataset.size
+    override fun getItemCount(): Int = dataSet.size
 
     interface CategoryCallback {
         fun onClick(categoryName: String)

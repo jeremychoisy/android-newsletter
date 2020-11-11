@@ -4,9 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.models.Editor
@@ -14,31 +12,29 @@ import com.mbds.newsletter.data.models.Editor
 
 class EditorAdapter(private val dataSet: MutableList<Editor>, private val callback: EditorCallback) :
         RecyclerView.Adapter<EditorAdapter.ViewHolder>() {
-        private val selectedPosition = mutableListOf<Int>()
     inner class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
 
         fun bind(item: Editor) {
             val name = root.findViewById<TextView>(R.id.source_name)
             val language = root.findViewById<TextView>(R.id.source_language)
             val txtDesc = root.findViewById<TextView>(R.id.source_description)
-            //val img = root.findViewById<AppCompatImageView>(R.id.image)
             name.text = item.name
             txtDesc.text = item.description
             language.text = convertLanguage(item.language)
 
             root.setOnClickListener {
-                SelectedFilter.list.add(item.name)
-                if(selectedPosition.contains(adapterPosition)){
-                    selectedPosition.remove(adapterPosition)
+                if(SelectedFilter.listPosition.contains(adapterPosition)){
+                    SelectedFilter.listPosition.remove(adapterPosition)
                     root.setBackgroundColor(Color.TRANSPARENT)
+                    SelectedFilter.list.remove(item.name)
                 }
                 else{
-                    selectedPosition.add(adapterPosition)
+                    SelectedFilter.listPosition.add(adapterPosition)
+                    SelectedFilter.list.add(item.name)
+                    root.setBackgroundColor(Color.GREEN)
                 }
-
-                root.setBackgroundColor(Color.GREEN)
-//                root.findViewById<Button>(R.id.button_search).text = updateFiltreButton()
                 print(" tab " + SelectedFilter.list + "\n")
+                print(" tabPos " + SelectedFilter.listPosition + "\n")
                 callback.onClick(item.name)
             }
         }
@@ -55,25 +51,16 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
         holder.bind(dataSet[position])
 
         println(position)
-        println(selectedPosition)
-//        holder.itemView.setOnClickListener {
-//            print("\nselected position avant " + selectedPosition + "\n")
-//            selectedPosition.add(holder.itemView)
-//            notifyDataSetChanged()
-//            print("\nselected position " + selectedPosition + "\n")
-//        }
+        println(SelectedFilter.listPosition)
+
         holder.itemView.setBackgroundColor(Color.TRANSPARENT)
-        selectedPosition.forEach {
+        SelectedFilter.listPosition.forEach {
             if(position==it){
                 println("item pos : " + position + " selected pos : " + it)
                 holder.bind(dataSet[position])
                 holder.itemView.setBackgroundColor(Color.GREEN)
             }
-//            it.setBackgroundColor(Color.GREEN)
         }
-//        holder.itemView.setBackgroundColor(Color.TRANSPARENT)
-
-
     }
 
 
@@ -107,15 +94,6 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
             "se" -> return "Suède"
             else -> return language
         }
-    }
-
-    fun updateFiltreButton(): String {
-        var text = "Filtre : "
-//        SelectedFilter.list.forEach {
-//            text += it
-//        }
-        text += "\n LANCER LA RECHERCHE"
-        return text
     }
 }
 

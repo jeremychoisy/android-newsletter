@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout
 import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.HomeAdapter
+import com.mbds.newsletter.adapters.SelectedFilter
 
 /**
  * A simple [Fragment] subclass.
@@ -37,6 +38,11 @@ class HomeFragment : Fragment() {
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_layout)
         tabLayout.setupWithViewPager(viewPager)
 
+        view.findViewById<Button>(R.id.button_search).setOnClickListener {
+            println(createURL())
+        }
+
+
 //        view.findViewById<TabLayout>(R.id.tabLayout).addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 //
 //            override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -56,5 +62,15 @@ class HomeFragment : Fragment() {
 //        button.setOnClickListener {
 //            (activity as? MainActivity)?.changeFragment(CategoriesFragment())
 //        }
+    }
+
+    fun createURL(): String {
+        var url = ""
+        SelectedFilter.list.forEachIndexed { index, s ->
+            url += s
+            if(index < SelectedFilter.list.size-1)
+                url += "%AND%"
+        }
+        return url
     }
 }

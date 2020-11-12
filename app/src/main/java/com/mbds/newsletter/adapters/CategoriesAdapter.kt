@@ -22,7 +22,13 @@ class CategoriesAdapter(private val dataSet: List<Category>, private val callbac
             val txtDesc = root.findViewById<TextView>(R.id.desc)
             txtTitle.text = item.name
             txtDesc.text = item.desc
-            Glide.with(root).load(item.url).into(img)
+
+            Glide
+                    .with(root)
+                    .load(item.url)
+                    .centerCrop()
+                    .placeholder(R.drawable.plholder)
+                    .into(img);
 
             root.setOnClickListener {
                 if(SelectedFilter.listPositionCategory.contains(adapterPosition)){
@@ -33,7 +39,7 @@ class CategoriesAdapter(private val dataSet: List<Category>, private val callbac
                 else{
                     SelectedFilter.listPositionCategory.add(adapterPosition)
                     SelectedFilter.listCategoryAndCountry.add(item.name)
-                    root.setBackgroundColor(Color.GREEN)
+                    root.setBackgroundColor(Color.LTGRAY)
                 }
                 //callback.onClick(item.name)
             }
@@ -54,7 +60,7 @@ class CategoriesAdapter(private val dataSet: List<Category>, private val callbac
                 println("item pos : " + position + " selected pos : " + it)
                 holder.bind(dataSet[position])
                 //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
-                holder.itemView.setBackgroundColor(Color.GREEN)
+                holder.itemView.setBackgroundColor(Color.LTGRAY)
             }
         }
     }

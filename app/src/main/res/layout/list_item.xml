@@ -8,32 +8,54 @@
     android:layout_marginTop="10dp"
     android:padding="5dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/round_image"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="20dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_launcher_background" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/round_image"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Politic "/>
+        app:layout_constraintTop_toTopOf="@+id/round_image"
+        tools:text="Titre" />
 
     <TextView
         android:id="@+id/desc"
-        android:layout_width="wrap_content"
+        android:paddingRight="10dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image"
-        tools:text="Description " />
+        android:fontFamily="sans-serif-black"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        app:layout_constrainedWidth= "true"
+        app:layout_constraintEnd_toStartOf="@+id/round_image"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:ignore="MissingConstraints"
+        android:maxLines="4"
+        android:ellipsize="end"
+        tools:text="Description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

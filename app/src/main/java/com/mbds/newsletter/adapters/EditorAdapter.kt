@@ -32,7 +32,7 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
                 else{
                     SelectedFilter.listPositionEditor.add(adapterPosition)
                     SelectedFilter.list.add(item.name)
-                    root.setBackgroundColor(Color.GREEN)
+                    root.setBackgroundColor(Color.LTGRAY)
                 }
                 print(" tab " + SelectedFilter.list + "\n")
                 print(" tabPos " + SelectedFilter.listPositionEditor + "\n")
@@ -60,7 +60,7 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
                 println("item pos : " + position + " selected pos : " + it)
                 holder.bind(dataSet[position])
                 //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
-                holder.itemView.setBackgroundColor(Color.GREEN)
+                holder.itemView.setBackgroundColor(Color.LTGRAY)
             }
         }
     }

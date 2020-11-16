@@ -8,7 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
+import com.mbds.newsletter.data.database.dao.ArticleDao
+import com.mbds.newsletter.data.database.db.ArticleDatabase
 import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.helpers.formatDate
 
@@ -39,7 +42,8 @@ class ArticleDetailsFragment() : Fragment() {
         articleDescriptionText.text = currentArticle.description
         articleContent.text = currentArticle.content
         val date = formatDate(currentArticle.publishedAt)
-        val creditText = "Published by "+ currentArticle.author +"the "+date+" in the "+ currentArticle.source.name
+        val creditText =
+            "Published by " + currentArticle.author + "the " + date + " in the " + currentArticle.source.name
         articleCreditsText.text = creditText
 
     }
@@ -50,5 +54,9 @@ class ArticleDetailsFragment() : Fragment() {
                 this.currentArticle = article
             }
         }
+    }
+
+    fun getCurrentArticle(): Article {
+        return this.currentArticle
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.Observer
 import androidx.lifecycle.liveData
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -14,6 +15,7 @@ import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.HomeAdapter
 import com.mbds.newsletter.adapters.SelectedFilter
 import com.mbds.newsletter.data.models.Resource
+import com.mbds.newsletter.data.models.Status
 import com.mbds.newsletter.data.services.ArticleHttpService
 import com.mbds.newsletter.data.services.EditorHttpService
 import kotlinx.coroutines.Dispatchers
@@ -46,8 +48,27 @@ class HomeFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPager)
 
         view.findViewById<Button>(R.id.button_search).setOnClickListener {
-//            println(createURL())
-            this.fetchData(createURL(), "")
+            println("URL : " + createURL(true))
+            fetchData(createURL(false), createURL(true)).observe(viewLifecycleOwner, Observer {
+                it?.let { resource ->
+                    when (resource.status) {
+                        Status.SUCCESS -> {
+//                        recyclerView.visibility = View.VISIBLE
+//                        spinner.visibility = View.GONE
+                            println(resource.data)
+                            resource.data?.let { editor -> println(editor) }
+                        }
+                        Status.ERROR -> {
+//                        recyclerView.visibility = View.VISIBLE
+//                        spinner.visibility = View.GONE
+                        }
+                        Status.LOADING -> {
+//                        spinner.visibility = View.VISIBLE
+//                        recyclerView.visibility = View.GONE
+                        }
+                    }
+                }
+            })
         }
 
 
@@ -72,12 +93,21 @@ class HomeFragment : Fragment() {
 //        }
     }
 
-    fun createURL(): String {
+    fun createURL(select: Boolean): String {
         var url = ""
-        SelectedFilter.list.forEachIndexed { index, s ->
-            url += s
-            if(index < SelectedFilter.list.size-1)
-                url += " AND "
+        if(select){
+            SelectedFilter.list.forEachIndexed { index, s ->
+                url += s.replace(" ", "-")
+                if(index < SelectedFilter.list.size-1)
+                    url += ","
+            }
+        }
+        else{
+            SelectedFilter.listCategoryAndCountry.forEachIndexed { index, s ->
+                url += s
+                if(index < SelectedFilter.listCategoryAndCountry.size-1)
+                    url += " AND "
+            }
         }
         return url
     }

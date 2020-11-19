@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
         SelectedFilter.listPositionCategory.clear()
         SelectedFilter.listPositionCountry.clear()
 
-                homeAdapter = HomeAdapter(childFragmentManager)
+        homeAdapter = HomeAdapter(childFragmentManager)
         viewPager = view.findViewById(R.id.pager)
         viewPager.adapter = homeAdapter
 

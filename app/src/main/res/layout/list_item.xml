@@ -8,11 +8,12 @@
     android:layout_marginTop="10dp"
     android:padding="5dp">
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/round_image"
         android:layout_width="110dp"
         android:layout_height="100dp"
-        android:layout_marginRight="20dp"
+        android:layout_margin="20dp"
         android:elevation="10dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,17 +29,34 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textStyle="bold"
+        android:textSize="12sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/round_image"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/round_image"
+        tools:text="Source" />
+
+    <TextView
+        android:id="@+id/title"
+        android:paddingRight="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constrainedWidth= "true"
+        app:layout_constraintEnd_toStartOf="@+id/round_image"
+        app:layout_constraintStart_toStartOf="@+id/source"
+        app:layout_constraintTop_toBottomOf="@+id/source"
+        tools:ignore="MissingConstraints"
+        android:maxLines="1"
+        android:ellipsize="end"
         tools:text="Titre" />
 
     <TextView
@@ -54,8 +72,31 @@
         app:layout_constraintStart_toStartOf="@+id/title"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:ignore="MissingConstraints"
-        android:maxLines="4"
+        android:maxLines="3"
         android:ellipsize="end"
         tools:text="Description" />
 
+    <TextView
+        android:id="@+id/published_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="7dp"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/round_image"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="Date" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/published_at"
+        app:layout_constraintStart_toStartOf="@+id/published_at"
+        app:layout_constraintTop_toBottomOf="@+id/published_at"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

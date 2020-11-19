@@ -18,9 +18,22 @@ class ArticleAdapter(private val dataSet: MutableList<Article>, private val call
             val txtTitle = root.findViewById<TextView>(R.id.title)
             val img = root.findViewById<AppCompatImageView>(R.id.image)
             val txtDesc = root.findViewById<TextView>(R.id.desc)
+            val txtPublishedAt: TextView = root.findViewById(R.id.published_at)
+            val txtSource: TextView = root.findViewById(R.id.source)
+
+            val source = item.source.toString()
+            val sourceName = source.substring(source.indexOf("name=") + 5 ,source.length - 1)
+            val date = toDateFormat(item.publishedAt.toString())
+
+            txtSource.text = sourceName
+            txtPublishedAt.text = date
             txtTitle.text = item.title
             txtDesc.text = item.description
-            Glide.with(root).load(item.urlToImage).into(img)
+            Glide.with(root)
+                    .load(item.urlToImage)
+                    .centerCrop()
+                    .placeholder(R.drawable.plholder)
+                    .into(img);
 
             root.setOnClickListener {
                 callback.onClick(item)
@@ -46,6 +59,12 @@ class ArticleAdapter(private val dataSet: MutableList<Article>, private val call
             addAll(articles)
         }
         notifyDataSetChanged()
+    }
+
+    private fun toDateFormat(date: String): String{
+        //2020-10-21T13:28:15Z
+        val dateReturn = date.split("[-T:Z]".toRegex())
+        return "Le "+ dateReturn[2] +"-"+ dateReturn[1] +"-" + dateReturn[0] +" à " + dateReturn[3]+"h"+dateReturn[4]
     }
 
     interface ArticleCallback {

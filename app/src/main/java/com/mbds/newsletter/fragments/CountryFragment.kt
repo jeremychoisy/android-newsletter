@@ -69,6 +69,6 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
     }
 
     override fun onClick(categoryName: String) {
-        (activity as? MainActivity)?.changeFragment(ListOfArticlesFragment.newInstance(categoryName))
+        (activity as? MainActivity)?.changeFragment(ListOfArticlesFragment.newInstance())
     }
 }

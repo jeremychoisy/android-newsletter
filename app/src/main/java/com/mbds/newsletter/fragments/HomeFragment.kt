@@ -40,7 +40,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeAdapter = HomeAdapter(childFragmentManager)
+        SelectedFilter.list.clear()
+        SelectedFilter.listCategoryAndCountry.clear()
+        SelectedFilter.listPositionEditor.clear()
+        SelectedFilter.listPositionCategory.clear()
+        SelectedFilter.listPositionCountry.clear()
+
+                homeAdapter = HomeAdapter(childFragmentManager)
         viewPager = view.findViewById(R.id.pager)
         viewPager.adapter = homeAdapter
 
@@ -48,27 +54,10 @@ class HomeFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPager)
 
         view.findViewById<Button>(R.id.button_search).setOnClickListener {
-            println("URL : " + createURL(true))
-            fetchData(createURL(false), createURL(true)).observe(viewLifecycleOwner, Observer {
-                it?.let { resource ->
-                    when (resource.status) {
-                        Status.SUCCESS -> {
-//                        recyclerView.visibility = View.VISIBLE
-//                        spinner.visibility = View.GONE
-                            println(resource.data)
-                            resource.data?.let { editor -> println(editor) }
-                        }
-                        Status.ERROR -> {
-//                        recyclerView.visibility = View.VISIBLE
-//                        spinner.visibility = View.GONE
-                        }
-                        Status.LOADING -> {
-//                        spinner.visibility = View.VISIBLE
-//                        recyclerView.visibility = View.GONE
-                        }
-                    }
-                }
-            })
+//            println("URL : " + createURL(true))
+            (activity as? MainActivity)?.changeFragment(
+                    ListOfArticlesFragment.newInstance()
+            )
         }
 
 
@@ -93,31 +82,7 @@ class HomeFragment : Fragment() {
 //        }
     }
 
-    fun createURL(select: Boolean): String {
-        var url = ""
-        if(select){
-            SelectedFilter.list.forEachIndexed { index, s ->
-                url += s.replace(" ", "-")
-                if(index < SelectedFilter.list.size-1)
-                    url += ","
-            }
-        }
-        else{
-            SelectedFilter.listCategoryAndCountry.forEachIndexed { index, s ->
-                url += s
-                if(index < SelectedFilter.listCategoryAndCountry.size-1)
-                    url += " AND "
-            }
-        }
-        return url
-    }
 
-    private fun fetchData(category: String, sources: String) = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.success(data = repository.getArticlesFiltered(category, sources)))
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-        }
-    }
+
+
 }

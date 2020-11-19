@@ -44,6 +44,8 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.CategoryCallback {
     }
 
     override fun onClick(categoryName: String) {
-        (activity as? MainActivity)?.changeFragment(ListOfArticlesFragment.newInstance(categoryName))
+        TODO("Not yet implemented")
     }
+
+
 }

@@ -15,6 +15,11 @@ import com.mbds.newsletter.data.database.db.ArticleDatabase
 import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.helpers.formatDate
 
+/**
+ * A simple [Fragment] subclass.
+ * Use the [ArticleDetailsFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class ArticleDetailsFragment() : Fragment() {
 
     private lateinit var currentArticle: Article
@@ -48,6 +53,9 @@ class ArticleDetailsFragment() : Fragment() {
 
     }
 
+    /**
+     * set the current article to share it with main activity
+     */
     companion object {
         fun newInstance(article: Article): ArticleDetailsFragment {
             return ArticleDetailsFragment().apply {

@@ -39,8 +39,6 @@ class CountriesAdapter(private val dataSet: List<Country>, private val callback:
                     SelectedFilter.listCategoryAndCountry.add(item.language)
                     root.setBackgroundColor(Color.LTGRAY)
                 }
-                print(" tab " + SelectedFilter.listCategoryAndCountry + "\n")
-                print(" tabPos " + SelectedFilter.listPositionCountry + "\n")
                 //callback.onClick(convertCountry(item.language))
             }
         }
@@ -57,7 +55,6 @@ class CountriesAdapter(private val dataSet: List<Country>, private val callback:
         holder.itemView.setBackgroundColor(Color.TRANSPARENT)
         SelectedFilter.listPositionCountry.forEach {
             if(position==it){
-                println("item pos : " + position + " selected pos : " + it)
                 holder.bind(dataSet[position])
                 //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
                 holder.itemView.setBackgroundColor(Color.LTGRAY)

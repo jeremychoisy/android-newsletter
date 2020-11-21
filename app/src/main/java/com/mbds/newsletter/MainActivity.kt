@@ -50,6 +50,10 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * Called When you press a button in the layout.
+     * Permit to switch the current fragment.
+     */
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_show_favorite -> {
             changeFragment(ListOfFavoriteArticlesFragment())

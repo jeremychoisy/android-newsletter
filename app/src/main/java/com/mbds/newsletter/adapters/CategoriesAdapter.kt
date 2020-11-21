@@ -58,7 +58,6 @@ class CategoriesAdapter(private val dataSet: List<Category>, private val callbac
         holder.itemView.setBackgroundColor(Color.TRANSPARENT)
         SelectedFilter.listPositionCategory.forEach {
             if(position==it){
-                println("item pos : " + position + " selected pos : " + it)
                 holder.bind(dataSet[position])
                 //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
                 holder.itemView.setBackgroundColor(Color.LTGRAY)

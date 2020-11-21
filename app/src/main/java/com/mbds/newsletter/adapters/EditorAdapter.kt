@@ -51,13 +51,9 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(dataSet[position])
 
-        println(position)
-        println(SelectedFilter.listPositionEditor)
-
         holder.itemView.setBackgroundColor(Color.TRANSPARENT)
         SelectedFilter.listPositionEditor.forEach {
             if(position==it){
-                println("item pos : " + position + " selected pos : " + it)
                 holder.bind(dataSet[position])
                 //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
                 holder.itemView.setBackgroundColor(Color.LTGRAY)

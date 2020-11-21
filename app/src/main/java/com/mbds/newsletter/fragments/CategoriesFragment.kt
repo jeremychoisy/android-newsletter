@@ -45,7 +45,6 @@ class CategoriesFragment : Fragment(), CategoryCallback {
     }
 
     override fun onClick(categoryName: String) {
-        TODO("Not yet implemented")
     }
 
 

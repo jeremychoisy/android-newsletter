@@ -9,6 +9,7 @@
     <string name="about_us_subtitle">About us</string>
     <string name="action_settings">Settings</string>
     <string name="action_about_us">About us</string>
+    <string name="about_us_description">We are 4 students from MIAGE (Méthodes informatiques appliquées à la Gestion d\'entreprises). We made this project to work our abilities in android.</string>
     <string name="action_show_favorite">Show favorite</string>
     <string name="action_set_favorite">Set favorite</string>
     <string name="no_article_found">We couldn\'t find any article matching your criteria</string>

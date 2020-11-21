@@ -41,11 +41,11 @@
         android:id="@+id/source_language"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="italic"
-        android:padding="10dp"
-        app:layout_constraintStart_toStartOf="@+id/source_description"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/source_description"
         tools:text="Language" />
 

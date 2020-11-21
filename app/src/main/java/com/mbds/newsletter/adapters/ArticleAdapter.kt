@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.models.Article
-import com.mbds.newsletter.helpers.formatDate
+import com.mbds.newsletter.fragments.ListOfFavoriteArticlesFragment
 import com.mbds.newsletter.interfaces.ArticleCallback
 
 class ArticleAdapter(private val dataSet: MutableList<Article>, private val callback: ArticleCallback) :
@@ -20,11 +20,13 @@ class ArticleAdapter(private val dataSet: MutableList<Article>, private val call
     inner class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
 
         fun bind(item: Article) {
-
             val txtTitle = root.findViewById<TextView>(R.id.title)
             val img = root.findViewById<AppCompatImageView>(R.id.image)
             val txtDesc = root.findViewById<TextView>(R.id.desc)
-
+            val favoriteButton = root.findViewById<ImageButton>(R.id.favorite)
+            val favoriteArticlesListObservable = callback.getFavoriteArticles()
+            val setFavoriteDrawable = root.context.getDrawable(R.drawable.ic_favorite_border_black_48dp)
+            val unsetFavoriteDrawable = root.context.getDrawable(R.drawable.ic_favorite_black_48dp)
             val txtPublishedAt: TextView = root.findViewById(R.id.published_at)
             val txtSource: TextView = root.findViewById(R.id.source)
 
@@ -32,33 +34,18 @@ class ArticleAdapter(private val dataSet: MutableList<Article>, private val call
             val sourceName = source.substring(source.indexOf("name=") + 5 ,source.length - 1)
             val date = toDateFormat(item.publishedAt.toString())
 
+            favoriteButton.visibility = View.VISIBLE
+
+        
             txtSource.text = sourceName
             txtPublishedAt.text = date
             txtTitle.text = item.title
             txtDesc.text = item.description
             Glide.with(root)
-                .load(item.urlToImage)
-                .centerCrop()
-                .placeholder(R.drawable.plholder)
-                .into(img);
-
-
-
-
-
-            val txtAuthor = root.findViewById<TextView>(R.id.author)
-            val txtPublishedAt = root.findViewById<TextView>(R.id.published_at)
-            val favoriteButton = root.findViewById<ImageButton>(R.id.favorite)
-            val favoriteArticlesListObservable = callback.getFavoriteArticles()
-            val setFavoriteDrawable = root.context.getDrawable(R.drawable.ic_favorite_border_black_48dp)
-            val unsetFavoriteDrawable = root.context.getDrawable(R.drawable.ic_favorite_black_48dp)
-
-            txtTitle.text = item.title
-            txtDesc.text = item.description
-            txtAuthor.text = item.author
-            txtPublishedAt.text = formatDate(item.publishedAt)
-            Glide.with(root).load(item.urlToImage).into(img)
-            favoriteButton.visibility = View.VISIBLE
+                    .load(item.urlToImage)
+                    .centerCrop()
+                    .placeholder(R.drawable.plholder)
+                    .into(img);
 
 
             favoriteArticlesListObservable.observe(root.context as LifecycleOwner, {
@@ -72,9 +59,6 @@ class ArticleAdapter(private val dataSet: MutableList<Article>, private val call
                     unsetFavoriteDrawable -> {callback.removeFavoriteArticle(item)}
                 }
             }
-
-
-
 
             root.setOnClickListener {
                 callback.onClick(item)
@@ -108,7 +92,4 @@ class ArticleAdapter(private val dataSet: MutableList<Article>, private val call
         return "Le "+ dateReturn[2] +"-"+ dateReturn[1] +"-" + dateReturn[0] +" à " + dateReturn[3]+"h"+dateReturn[4]
     }
 
-    interface ArticleCallback {
-        fun onClick(article: Article)
-    }
 }

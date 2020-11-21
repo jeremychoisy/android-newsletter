@@ -16,7 +16,7 @@ import com.mbds.newsletter.data.models.Country
 /**
  * A simple [Fragment] subclass.
  */
-class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
+class CountryFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -68,7 +68,7 @@ class CountryFragment : Fragment(), CategoriesAdapter.CategoryCallback {
         recyclerView.adapter = adapterRecycler
     }
 
-    override fun onClick(categoryName: String) {
-        (activity as? MainActivity)?.changeFragment(ListOfArticlesFragment.newInstance())
-    }
+//    override fun onClick(categoryName: String) {
+//        (activity as? MainActivity)?.changeFragment(ListOfArticlesFragment.newInstance())
+//    }
 }

@@ -19,7 +19,6 @@ import com.mbds.newsletter.data.database.db.ArticleDatabase
 import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.data.models.Resource
 import com.mbds.newsletter.data.models.Status
-import com.mbds.newsletter.data.models.Status.*
 import com.mbds.newsletter.data.services.ArticleHttpService
 import com.mbds.newsletter.interfaces.ArticleCallback
 import kotlinx.coroutines.Dispatchers

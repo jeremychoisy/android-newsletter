@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/borderOnClick"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--android:background="@drawable/border_filter_on_click" -->
+
+    <TextView
+        android:id="@+id/source_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/source_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-black"
+        android:maxLines="4"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+
+        android:textStyle="bold"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="@+id/source_name"
+        app:layout_constraintTop_toBottomOf="@+id/source_name"
+        tools:ignore="MissingConstraints"
+        tools:text="Description" />
+
+    <TextView
+        android:id="@+id/source_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="@+id/source_description"
+        app:layout_constraintTop_toBottomOf="@+id/source_description"
+        tools:text="Language" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FFFFFF"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/source_language"
+        app:layout_constraintStart_toStartOf="@+id/source_language"
+        app:layout_constraintTop_toBottomOf="@+id/source_language"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

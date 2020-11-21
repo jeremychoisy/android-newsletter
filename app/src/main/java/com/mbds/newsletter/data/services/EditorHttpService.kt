@@ -1,8 +1,11 @@
 package com.mbds.newsletter.data.services
 
+
 import com.mbds.newsletter.data.interfaces.ArticleService
+import com.mbds.newsletter.data.interfaces.EditorService
 import com.mbds.newsletter.data.interfaces.RetrofitApiService
 import com.mbds.newsletter.data.models.Article
+import com.mbds.newsletter.data.models.Editor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -10,7 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ArticleHttpService : ArticleService {
+class EditorHttpService : EditorService {
     private val service: RetrofitApiService
 
     init {
@@ -28,11 +31,11 @@ class ArticleHttpService : ArticleService {
             addApiInterceptor(this)
         }.build()
         return Retrofit
-            .Builder()
-            .baseUrl(apiUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(httpClient)
-            .build()
+                .Builder()
+                .baseUrl(apiUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
+                .build()
     }
 
     /**
@@ -55,27 +58,24 @@ class ArticleHttpService : ArticleService {
                 val original = chain.request()
                 val originalHttpUrl = original.url
                 val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("apikey", apiKey)
-                    .build()
+                        .addQueryParameter("apikey", apiKey)
+                        .build()
 
                 val requestBuilder = original.newBuilder()
-                    .url(url)
+                        .url(url)
                 val request = requestBuilder.build()
                 return chain.proceed(request)
             }
         })
     }
 
-    override fun getArticles(category: String): List<Article> {
-        return service.list(category).execute().body()?.articles ?: listOf()
-    }
-
-    override fun getArticlesFiltered(category: String, sources: String): List<Article> {
-        return service.listArticlesFiltered(category, sources).execute().body()?.articles ?: listOf()
+    override fun getEditors(): List<Editor> {
+        return service.listEditors().execute().body()?.sources ?: listOf()
     }
 
     companion object {
         private const val apiKey = "8261892cd50f455fb52dab184e26b748"
         private const val apiUrl = "https://newsapi.org/v2/"
     }
+
 }

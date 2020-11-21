@@ -32,11 +32,11 @@ class CategoriesFragment : Fragment(), CategoryCallback {
         recyclerView = view.findViewById(R.id.recycler_view)
         val categories = listOf<Category>(
             Category("Sport", "Most exhausting sport topics from all around the world", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTqHRYCG74D6qQ2IT6TUWpt9Mrn3iBgfS0nww&usqp=CAU"),
-            Category("Economic", "Wealthier economic topics from all around the world", "https://i.kym-cdn.com/entries/icons/facebook/000/029/959/Screen_Shot_2019-06-05_at_1.26.32_PM.jpg"),
-            Category("Politic", "Leading politic topics from all around the world", "https://upload.wikimedia.org/wikipedia/commons/0/04/Barack_Obama_Mic_Drop_2016.jpg"),
-            Category("Education", "Smartest education topics from all around the world", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYpjMsQJvcXdh-nsUZ4J7KqVPY5165xHgycQ&usqp=CAU"),
-            Category("Pandemic", "Sickest pandemic topics from all around the world", "https://www.cetim.ch/wp-content/uploads/Pages-2-et-3-1.png"),
-            Category("Sciences", "Mind blowing science topics from all around the world", "https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/6/f/c/6fc6bc1b21_50021087_albert-einstein-langue.jpg"),
+            Category("Economic", "Wealthier economic topics from all around the world", "https://images.niooz.fr/safe_image.php?clean=1&width=600&i=/cache/mediaid/3/3/7/0/4/3370420.jpg"),
+            Category("Politic", "Leading politic topics from all around the world", "https://lumieresdelaville.net/wp-content/uploads/2017/11/7392285_d60a92a8-c940-11e7-b36b-53a09aedfc0c-1_1000x625.jpg"),
+            Category("Education", "Smartest education topics from all around the world", "https://www.weka.fr/actualite/wp-content/uploads/2020/10/le-ministere-de-l-education-nationale-lance-les-territoires-numeriques-educatifs-640x312.jpg"),
+            Category("Pandemic", "Sickest pandemic topics from all around the world", "https://resize1.prod.docfr.doc-media.fr/rcrop/450,340,center-middle/img/var/doctissimo/storage/images/fr/www/sante/news/coronavirus-covid19-pourquoi-plus-infectieux-que-les-autres-2003/8418826-1-fre-FR/coronavirus-covid19-pourquoi-plus-infectieux-que-les-autres-2003.jpg"),
+            Category("Sciences", "Mind blowing science topics from all around the world", "https://www.ican-institute.org/wp-content/uploads/2019/04/dna-3539309-pixabay.jpg"),
             Category("Ecology", "Greenest ecology topics from all around the world", "https://www.science.edu/acellus/wp-content/uploads/2017/01/earth-405096_1920.jpg")
         )
         val adapterRecycler = CategoriesAdapter(categories, this)
@@ -45,6 +45,8 @@ class CategoriesFragment : Fragment(), CategoryCallback {
     }
 
     override fun onClick(categoryName: String) {
-        (activity as? MainActivity)?.changeFragment(ListOfArticlesFragment.newInstance(categoryName))
+        TODO("Not yet implemented")
     }
+
+
 }

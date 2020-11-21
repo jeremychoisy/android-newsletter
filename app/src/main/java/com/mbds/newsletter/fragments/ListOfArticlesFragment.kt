@@ -14,9 +14,11 @@ import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.ArticleAdapter
 import com.mbds.newsletter.data.database.dao.ArticleDao
+import com.mbds.newsletter.adapters.SelectedFilter
 import com.mbds.newsletter.data.database.db.ArticleDatabase
 import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.data.models.Resource
+import com.mbds.newsletter.data.models.Status
 import com.mbds.newsletter.data.models.Status.*
 import com.mbds.newsletter.data.services.ArticleHttpService
 import com.mbds.newsletter.interfaces.ArticleCallback
@@ -56,47 +58,63 @@ class ListOfArticlesFragment : Fragment(), ArticleCallback {
         val noArticleFoundText: TextView = view.findViewById(R.id.no_article_found)
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
         val spinner: ProgressBar = view.findViewById(R.id.spinner)
-        titleText.text = category
+        titleText.text = "Recherche"
         noArticleFoundText.text = getString(R.string.no_article_found)
         adapter = ArticleAdapter(mutableListOf(),this)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.adapter = adapter
-        fetchData().observe(viewLifecycleOwner, Observer {
+        fetchData(createURL(false), createURL(true)).observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.status) {
-                    SUCCESS -> {
-                        recyclerView.visibility = View.VISIBLE
-                        spinner.visibility = View.GONE
-                        resource.data?.let { articles ->
-                            if (articles.isNotEmpty()) {
-                                noArticleFoundText.visibility = View.GONE
-                            } else {
-                                noArticleFoundText.visibility = View.VISIBLE
-                            }
+                    Status.SUCCESS -> {
+//                        recyclerView.visibility = View.VISIBLE
+//                        spinner.visibility = View.GONE
+                        println(resource.data)
+                        resource.data?.let { articles -> if(articles.isNotEmpty())
                             setArticlesList(articles)
-                        }
+                        else
+                            titleText.text = "Aucun résultat"}
                     }
-                    ERROR -> {
-                        recyclerView.visibility = View.VISIBLE
-                        spinner.visibility = View.GONE
+                    Status.ERROR -> {
+//                        recyclerView.visibility = View.VISIBLE
+//                        spinner.visibility = View.GONE
                     }
-                    LOADING -> {
-                        spinner.visibility = View.VISIBLE
-                        recyclerView.visibility = View.GONE
+                    Status.LOADING -> {
+//                        spinner.visibility = View.VISIBLE
+//                        recyclerView.visibility = View.GONE
                     }
                 }
             }
         })
+//        fetchData().observe(viewLifecycleOwner, Observer {
+//            it?.let { resource ->
+//                when (resource.status) {
+//                    SUCCESS -> {
+//                        recyclerView.visibility = View.VISIBLE
+//                        spinner.visibility = View.GONE
+//                        resource.data?.let { articles -> setArticlesList(articles) }
+//                    }
+//                    ERROR -> {
+//                        recyclerView.visibility = View.VISIBLE
+//                        spinner.visibility = View.GONE
+//                    }
+//                    LOADING -> {
+//                        spinner.visibility = View.VISIBLE
+//                        recyclerView.visibility = View.GONE
+//                    }
+//                }
+//            }
+//        })
     }
-
-    private fun fetchData() = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.success(data = repository.getArticles(category)))
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-        }
-    }
+//
+//    private fun fetchData() = liveData(Dispatchers.IO) {
+//        emit(Resource.loading(data = null))
+//        try {
+//            emit(Resource.success(data = repository.getArticles(category)))
+//        } catch (exception: Exception) {
+//            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+//        }
+//    }
 
     override fun getFavoriteArticles(): LiveData<List<Article>> {
         return articleDAO.getAll()
@@ -119,14 +137,41 @@ class ListOfArticlesFragment : Fragment(), ArticleCallback {
     }
 
     companion object {
-        fun newInstance(category: String): ListOfArticlesFragment {
+        fun newInstance(): ListOfArticlesFragment {
             return ListOfArticlesFragment().apply {
-                this.category = category
             }
         }
     }
 
-    override fun onClick(article: Article) {
+    fun createURL(select: Boolean): String {
+        var url = ""
+        if(select){
+            SelectedFilter.list.forEachIndexed { index, s ->
+                url += s.replace(" ", "-")
+                if(index < SelectedFilter.list.size-1)
+                    url += ","
+            }
+        }
+        else{
+            SelectedFilter.listCategoryAndCountry.forEachIndexed { index, s ->
+                url += s
+                if(index < SelectedFilter.listCategoryAndCountry.size-1)
+                    url += " AND "
+            }
+        }
+        return url
+    }
+
+    private fun fetchData(category: String, sources: String) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(Resource.success(data = repository.getArticlesFiltered(category, sources)))
+        } catch (exception: Exception) {
+            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+        }
+    }
+
+   override fun onClick(article: Article) {
         (activity as? MainActivity)?.changeFragment(ArticleDetailsFragment.newInstance(article))
     }
 }

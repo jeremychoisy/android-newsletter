@@ -7,11 +7,11 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.models.Article
-import com.mbds.newsletter.fragments.ListOfFavoriteArticlesFragment
 import com.mbds.newsletter.interfaces.ArticleCallback
 
 class ArticleAdapter(private val dataSet: MutableList<Article>, private val callback: ArticleCallback) :

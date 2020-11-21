@@ -13,4 +13,5 @@
     <string name="action_set_favorite">Set favorite</string>
     <string name="no_article_found">We couldn\'t find any article matching your criteria</string>
     <string name="no_favorite_article_found">We couldn\'t find any favorite article</string>
+    <string name="search">Search</string>
 </resources>

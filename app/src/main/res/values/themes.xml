@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Newsletter" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#616161</item>
+        <item name="colorPrimary">#FFC107</item>
         <item name="colorPrimaryVariant">#757575</item>
         <item name="colorOnPrimary">#DCDCDC</item>
         <!-- Secondary brand color. -->

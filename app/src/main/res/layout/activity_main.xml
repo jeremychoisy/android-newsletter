@@ -15,7 +15,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/Theme.Newsletter"
-        app:titleTextColor="#DCDCDC"
+        app:titleTextColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/PopUpStyle"/>
 

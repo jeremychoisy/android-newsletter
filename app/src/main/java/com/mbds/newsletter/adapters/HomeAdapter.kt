@@ -22,9 +22,9 @@ class HomeAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence {
 
         return when(position){
-            0 -> "Editeur"
-            1 -> "Categorie"
-            else -> "Pays"
+            0 -> "Editor"
+            1 -> "Category"
+            else -> "Country"
         }
     }
 }

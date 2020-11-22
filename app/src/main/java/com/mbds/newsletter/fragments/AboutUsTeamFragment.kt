@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.R
-import com.mbds.newsletter.adapters.CountriesAdapter
 import com.mbds.newsletter.adapters.PersonAdapter
 import com.mbds.newsletter.data.models.Person
 

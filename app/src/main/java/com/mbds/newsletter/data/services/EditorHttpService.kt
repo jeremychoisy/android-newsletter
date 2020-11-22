@@ -1,10 +1,7 @@
 package com.mbds.newsletter.data.services
 
-
-import com.mbds.newsletter.data.interfaces.ArticleService
 import com.mbds.newsletter.data.interfaces.EditorService
 import com.mbds.newsletter.data.interfaces.RetrofitApiService
-import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.data.models.Editor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

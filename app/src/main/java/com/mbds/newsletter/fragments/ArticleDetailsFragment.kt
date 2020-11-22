@@ -8,10 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
-import com.mbds.newsletter.data.database.dao.ArticleDao
-import com.mbds.newsletter.data.database.db.ArticleDatabase
 import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.helpers.formatDate
 

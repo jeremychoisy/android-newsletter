@@ -69,8 +69,7 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
                 if (fixedCurrentArticle != null) {
                     if (listOfFavoriteArticles.contains(currentArticleDetails)) {
                         articleDAO.delete(fixedCurrentArticle)
-                    }
-                    else
+                    } else
                         articleDAO.insert(fixedCurrentArticle)
                 }
             }
@@ -106,7 +105,10 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
      * @param fragment
      */
     fun changeFragment(fragment: Fragment) {
-        currentArticleDetails = if (fragment is ArticleDetailsFragment ) fragment.getCurrentArticle() else null
+        if (fragment is ArticleDetailsFragment) {
+            currentArticleDetails = fragment.getCurrentArticle()
+            updateFavoriteIcon()
+        }
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, fragment)
@@ -128,10 +130,9 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
      * only while displaying the home fragment and the list of articles fragment.
      */
     private fun displayFavorite() {
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
         val favoriteItemMenu = menu?.findItem(R.id.action_show_favorite)
         if (favoriteItemMenu != null) {
-            when (currentFragment) {
+            when (supportFragmentManager.findFragmentById(R.id.fragment_container)) {
                 is CategoriesFragment -> favoriteItemMenu.isVisible = true
                 is ListOfArticlesFragment -> favoriteItemMenu.isVisible = true
                 else -> favoriteItemMenu.isVisible = false
@@ -144,10 +145,10 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
      * only while displaying the article details fragment.
      */
     private fun displaySetFavorite() {
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
         val setFavoriteItemMenu = menu?.findItem(R.id.action_set_favorite)
         if (setFavoriteItemMenu != null) {
-            setFavoriteItemMenu.isVisible = currentFragment is ArticleDetailsFragment
+            setFavoriteItemMenu.isVisible =
+                supportFragmentManager.findFragmentById(R.id.fragment_container) is ArticleDetailsFragment
         }
     }
 
@@ -155,8 +156,7 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
      * Displays the appropriate toolbar's subtitle depending on the current displayed fragment
      */
     private fun displaySubtitle() {
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
-        when (currentFragment) {
+        when (supportFragmentManager.findFragmentById(R.id.fragment_container)) {
             is HomeFragment -> supportActionBar?.subtitle = getString(R.string.home_subtitle)
             is CategoriesFragment -> supportActionBar?.subtitle =
                 getString(R.string.categories_subtitle)
@@ -166,7 +166,8 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
                 getString(R.string.articles_subtitle)
             is ArticleDetailsFragment -> supportActionBar?.subtitle =
                 getString(R.string.article_detail)
-            is AboutUsTeamFragment -> supportActionBar?.subtitle = getString(R.string.about_us_subtitle)
+            is AboutUsTeamFragment -> supportActionBar?.subtitle =
+                getString(R.string.about_us_subtitle)
         }
     }
 

@@ -11,9 +11,7 @@ import androidx.lifecycle.liveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.R
-import com.mbds.newsletter.adapters.CategoriesAdapter
 import com.mbds.newsletter.adapters.EditorAdapter
-import com.mbds.newsletter.data.models.Article
 import com.mbds.newsletter.data.models.Editor
 import com.mbds.newsletter.data.models.Resource
 import com.mbds.newsletter.data.models.Status

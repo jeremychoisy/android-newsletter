@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
     private var hasDaoActionBeenDone: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        application.setTheme(android.R.style.Theme_Light)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         // Initialize dao

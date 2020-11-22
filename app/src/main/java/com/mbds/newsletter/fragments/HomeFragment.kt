@@ -6,19 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.lifecycle.Observer
-import androidx.lifecycle.liveData
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.HomeAdapter
 import com.mbds.newsletter.adapters.SelectedFilter
-import com.mbds.newsletter.data.models.Resource
-import com.mbds.newsletter.data.models.Status
 import com.mbds.newsletter.data.services.ArticleHttpService
-import com.mbds.newsletter.data.services.EditorHttpService
-import kotlinx.coroutines.Dispatchers
 
 /**
  * A simple [Fragment] subclass.
@@ -41,7 +35,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         SelectedFilter.list.clear()
-        SelectedFilter.listCategoryAndCountry.clear()
+        SelectedFilter.listCategory.clear()
+        SelectedFilter.listCountry.clear()
         SelectedFilter.listPositionEditor.clear()
         SelectedFilter.listPositionCategory.clear()
         SelectedFilter.listPositionCountry.clear()

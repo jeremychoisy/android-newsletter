@@ -15,6 +15,8 @@ import com.mbds.newsletter.fragments.CountryFragment
 class CountriesAdapter(private val dataSet: List<Country>, private val callback: CountryFragment) :
         RecyclerView.Adapter<CountriesAdapter.ViewHolder>() {
 
+    private var row_index = -1
+
     inner class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
         fun bind(item: Country) {
             val country = root.findViewById<TextView>(R.id.country)
@@ -27,20 +29,6 @@ class CountriesAdapter(private val dataSet: List<Country>, private val callback:
                     .centerCrop()
                     .placeholder(R.drawable.plholder)
                     .into(img);
-
-            root.setOnClickListener {
-                if(SelectedFilter.listPositionCountry.contains(adapterPosition)){
-                    SelectedFilter.listPositionCountry.remove(adapterPosition)
-                    root.setBackgroundColor(Color.TRANSPARENT)
-                    SelectedFilter.listCategoryAndCountry.remove(item.language)
-                }
-                else{
-                    SelectedFilter.listPositionCountry.add(adapterPosition)
-                    SelectedFilter.listCategoryAndCountry.add(item.language)
-                    root.setBackgroundColor(Color.LTGRAY)
-                }
-                //callback.onClick(convertCountry(item.language))
-            }
         }
     }
 
@@ -50,15 +38,30 @@ class CountriesAdapter(private val dataSet: List<Country>, private val callback:
         return ViewHolder(rootView)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(dataSet[position])
-        holder.itemView.setBackgroundColor(Color.TRANSPARENT)
-        SelectedFilter.listPositionCountry.forEach {
-            if(position==it){
-                holder.bind(dataSet[position])
-                //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
-                holder.itemView.setBackgroundColor(Color.LTGRAY)
-            }
+        println(SelectedFilter.listCountry)
+        if(SelectedFilter.listPositionCountry.size > 0){
+            row_index = SelectedFilter.listPositionCountry[0]
+        }
+
+        holder.itemView.setOnClickListener(View.OnClickListener {
+            row_index = position
+            SelectedFilter.listPositionCountry.clear()
+            SelectedFilter.listCountry.clear()
+            notifyDataSetChanged()
+        })
+        if (row_index == position && SelectedFilter.listPositionCountry.size == 0) {
+            holder.itemView.setBackgroundColor(Color.LTGRAY)
+            SelectedFilter.listPositionCountry.add(position)
+            SelectedFilter.listCountry.add(dataSet[position].language)
+        }
+        else if(row_index == position){
+            holder.itemView.setBackgroundColor(Color.LTGRAY)
+        }
+        else {
+            holder.itemView.setBackgroundColor(Color.TRANSPARENT)
         }
     }
 
@@ -70,18 +73,18 @@ interface CountryCallback {
 }
 
 fun convertCountry(countryISO: String): String {
-    when(countryISO) {
-        "ar" -> return "Argentine"
-        "de" -> return "Allemagne"
-        "en" -> return "Anglais"
-        "es" -> return "Espagne"
-        "fr" -> return "France"
-        "it" -> return "Italie"
-        "nl" -> return "Pays-Bas"
-        "no" -> return "Norvège"
-        "pt" -> return "Portugal"
-        "ru" -> return "Russe"
-        "se" -> return "Suède"
-        else -> return ""
+    return when(countryISO) {
+        "ar" -> "Argentine"
+        "de" -> "Allemagne"
+        "en" -> "Anglais"
+        "es" -> "Espagne"
+        "fr" -> "France"
+        "it" -> "Italie"
+        "nl" -> "Pays-Bas"
+        "no" -> "Norvège"
+        "pt" -> "Portugal"
+        "ru" -> "Russe"
+        "se" -> "Suède"
+        else -> ""
     }
 }

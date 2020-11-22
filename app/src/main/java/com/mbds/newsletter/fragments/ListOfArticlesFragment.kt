@@ -62,7 +62,7 @@ class ListOfArticlesFragment : Fragment(), ArticleCallback {
         adapter = ArticleAdapter(mutableListOf(),this)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.adapter = adapter
-        fetchData(createURL(false), createURL(true)).observe(viewLifecycleOwner, Observer {
+        fetchData(createURL(0), createURL(1), createURL(2)).observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
@@ -142,9 +142,16 @@ class ListOfArticlesFragment : Fragment(), ArticleCallback {
         }
     }
 
-    fun createURL(select: Boolean): String {
+    fun createURL(select: Int): String {
         var url = ""
-        if(select){
+        if(select == 0){
+            SelectedFilter.listCategory.forEachIndexed { index, s ->
+                url += s
+                if(index < SelectedFilter.listCategory.size-1)
+                    url += " AND "
+            }
+        }
+        else if(select == 1){
             SelectedFilter.list.forEachIndexed { index, s ->
                 url += s.replace(" ", "-")
                 if(index < SelectedFilter.list.size-1)
@@ -152,19 +159,19 @@ class ListOfArticlesFragment : Fragment(), ArticleCallback {
             }
         }
         else{
-            SelectedFilter.listCategoryAndCountry.forEachIndexed { index, s ->
+            SelectedFilter.listCountry.forEachIndexed { index, s ->
                 url += s
-                if(index < SelectedFilter.listCategoryAndCountry.size-1)
-                    url += " AND "
+                if(index < SelectedFilter.listCategory.size-1)
+                    url += ","
             }
         }
         return url
     }
 
-    private fun fetchData(category: String, sources: String) = liveData(Dispatchers.IO) {
+    private fun fetchData(category: String, sources: String, country: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data = repository.getArticlesFiltered(category, sources)))
+            emit(Resource.success(data = repository.getArticlesFiltered(category, sources, country)))
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
         }

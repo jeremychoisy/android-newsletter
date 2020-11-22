@@ -70,8 +70,8 @@ class ArticleHttpService : ArticleService {
         return service.list(category).execute().body()?.articles ?: listOf()
     }
 
-    override fun getArticlesFiltered(category: String, sources: String): List<Article> {
-        return service.listArticlesFiltered(category, sources).execute().body()?.articles ?: listOf()
+    override fun getArticlesFiltered(category: String, sources: String, country: String): List<Article> {
+        return service.listArticlesFiltered(category, sources, country).execute().body()?.articles ?: listOf()
     }
 
     companion object {

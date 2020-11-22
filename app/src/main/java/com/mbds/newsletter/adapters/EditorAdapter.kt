@@ -27,16 +27,16 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
                 if(SelectedFilter.listPositionEditor.contains(adapterPosition)){
                     SelectedFilter.listPositionEditor.remove(adapterPosition)
                     root.setBackgroundColor(Color.TRANSPARENT)
-                    SelectedFilter.list.remove(item.name)
+                    SelectedFilter.list.remove(item.id)
                 }
                 else{
                     SelectedFilter.listPositionEditor.add(adapterPosition)
-                    SelectedFilter.list.add(item.name)
+                    SelectedFilter.list.add(item.id)
                     root.setBackgroundColor(Color.LTGRAY)
                 }
                 print(" tab " + SelectedFilter.list + "\n")
                 print(" tabPos " + SelectedFilter.listPositionEditor + "\n")
-                callback.onClick(item.name)
+                callback.onClick(item.id)
             }
         }
     }

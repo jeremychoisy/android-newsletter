@@ -35,11 +35,11 @@ class CategoriesAdapter(private val dataSet: List<Category>, private val callbac
                 if(SelectedFilter.listPositionCategory.contains(adapterPosition)){
                     SelectedFilter.listPositionCategory.remove(adapterPosition)
                     root.setBackgroundColor(Color.TRANSPARENT)
-                    SelectedFilter.listCategoryAndCountry.remove(item.name)
+                    SelectedFilter.listCategory.remove(item.name)
                 }
                 else{
                     SelectedFilter.listPositionCategory.add(adapterPosition)
-                    SelectedFilter.listCategoryAndCountry.add(item.name)
+                    SelectedFilter.listCategory.add(item.name)
                     root.setBackgroundColor(Color.LTGRAY)
                 }
                 //callback.onClick(item.name)

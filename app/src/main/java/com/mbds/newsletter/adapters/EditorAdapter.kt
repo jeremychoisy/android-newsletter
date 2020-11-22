@@ -54,6 +54,7 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
         holder.itemView.setBackgroundColor(Color.TRANSPARENT)
         SelectedFilter.listPositionEditor.forEach {
             if(position==it){
+                println("item pos : $position selected pos : $it")
                 holder.bind(dataSet[position])
                 //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
                 holder.itemView.setBackgroundColor(Color.LTGRAY)
@@ -78,19 +79,19 @@ class EditorAdapter(private val dataSet: MutableList<Editor>, private val callba
     }
 
     fun convertLanguage(language: String): String {
-        when(language) {
-            "ar" -> return "Argentine"
-            "de" -> return "Allemagne"
-            "en" -> return "Anglais"
-            "es" -> return "Espagne"
-            "fr" -> return "France"
-            "it" -> return "Italie"
-            "nl" -> return "Pays-Bas"
-            "no" -> return "Norvège"
-            "pt" -> return "Portugal"
-            "ru" -> return "Russe"
-            "se" -> return "Suède"
-            else -> return language
+        return when(language) {
+            "ar" -> "Argentine"
+            "de" -> "Allemagne"
+            "en" -> "Anglais"
+            "es" -> "Espagne"
+            "fr" -> "France"
+            "it" -> "Italie"
+            "nl" -> "Pays-Bas"
+            "no" -> "Norvège"
+            "pt" -> "Portugal"
+            "ru" -> "Russe"
+            "se" -> "Suède"
+            else -> language
         }
     }
 }

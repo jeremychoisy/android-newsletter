@@ -1,6 +1,5 @@
 package com.mbds.newsletter.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.R
 import com.bumptech.glide.Glide
-import com.mbds.newsletter.data.models.Country
 import com.mbds.newsletter.data.models.Person
-import com.mbds.newsletter.fragments.AboutUsFragment
+import com.mbds.newsletter.fragments.AboutUsTeamFragment
 
-class PersonAdapter(private val dataSet: List<Person>, private val callback: AboutUsFragment) :
+class PersonAdapter(private val dataSet: List<Person>, private val callback: AboutUsTeamFragment) :
     RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {

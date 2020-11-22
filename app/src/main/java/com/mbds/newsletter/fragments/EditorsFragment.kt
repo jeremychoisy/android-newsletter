@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.liveData
@@ -39,7 +40,7 @@ class EditorsFragment : Fragment(), EditorAdapter.EditorCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view_editor)
-//        val spinner: ProgressBar = view.findViewById(R.id.spinner)
+        val spinner: ProgressBar = view.findViewById(R.id.spinner)
         adapter = EditorAdapter(mutableListOf(),this)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.adapter = adapter
@@ -47,18 +48,18 @@ class EditorsFragment : Fragment(), EditorAdapter.EditorCallback {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-//                        recyclerView.visibility = View.VISIBLE
-//                        spinner.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                        spinner.visibility = View.GONE
                         println(resource.data)
                         resource.data?.let { editor -> setEditorsList(editor) }
                     }
                     Status.ERROR -> {
-//                        recyclerView.visibility = View.VISIBLE
-//                        spinner.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                        spinner.visibility = View.GONE
                     }
                     Status.LOADING -> {
-//                        spinner.visibility = View.VISIBLE
-//                        recyclerView.visibility = View.GONE
+                        spinner.visibility = View.VISIBLE
+                        recyclerView.visibility = View.GONE
                     }
                 }
             }

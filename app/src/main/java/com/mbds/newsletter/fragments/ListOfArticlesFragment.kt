@@ -66,8 +66,8 @@ class ListOfArticlesFragment : Fragment(), ArticleCallback {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-//                        recyclerView.visibility = View.VISIBLE
-//                        spinner.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                        spinner.visibility = View.GONE
                         println(resource.data)
                         resource.data?.let { articles -> if(articles.isNotEmpty())
                             setArticlesList(articles)
@@ -75,12 +75,12 @@ class ListOfArticlesFragment : Fragment(), ArticleCallback {
                             titleText.text = "Aucun résultat"}
                     }
                     Status.ERROR -> {
-//                        recyclerView.visibility = View.VISIBLE
-//                        spinner.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                        spinner.visibility = View.GONE
                     }
                     Status.LOADING -> {
-//                        spinner.visibility = View.VISIBLE
-//                        recyclerView.visibility = View.GONE
+                        spinner.visibility = View.VISIBLE
+                        recyclerView.visibility = View.GONE
                     }
                 }
             }

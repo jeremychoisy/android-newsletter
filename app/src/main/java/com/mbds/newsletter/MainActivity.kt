@@ -172,7 +172,7 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
                 getString(R.string.article_detail)
             is SettingsFragment -> supportActionBar?.subtitle =
                 getString(R.string.settings_subtitle)
-            is AboutUsFragment -> supportActionBar?.subtitle = getString(R.string.about_us_subtitle)
+            is AboutUsTeamFragment -> supportActionBar?.subtitle = getString(R.string.about_us_subtitle)
         }
     }
 

@@ -3,7 +3,7 @@
     <style name="Theme.Newsletter" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#FFC107</item>
-        <item name="colorPrimaryVariant">#757575</item>
+        <item name="colorPrimaryVariant">#A17900</item>
         <item name="colorOnPrimary">#DCDCDC</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

@@ -4,21 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.adapters.AboutUsAdapter
-import com.mbds.newsletter.adapters.HomeAdapter
-import com.mbds.newsletter.adapters.SelectedFilter
 
-
-/**
- * A simple [Fragment] subclass.
- */
-class AboutUsFragment : Fragment() {
+class AboutUsOtherFragment : Fragment() {
     private lateinit var aboutUsAdapter: AboutUsAdapter
     private lateinit var viewPager: ViewPager
 
@@ -27,18 +19,11 @@ class AboutUsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_us, container, false)
+        return inflater.inflate(R.layout.about_us_other, container, false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        aboutUsAdapter = AboutUsAdapter(childFragmentManager)
-        viewPager = view.findViewById(R.id.pager)
-        viewPager.adapter = aboutUsAdapter
-
-        val tabLayout = view.findViewById<TabLayout>(R.id.tab_layout)
-        tabLayout.setupWithViewPager(viewPager)
     }
 }

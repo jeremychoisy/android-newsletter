@@ -15,11 +15,6 @@
         android:visible="false"
         app:showAsAction="ifRoom"/>
 
-    <!-- Settings and About us, should always be in the overflow -->
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
-
     <item android:id="@+id/action_about_us"
         android:title="@string/action_about_us"
         app:showAsAction="never"/>

@@ -59,10 +59,6 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
             changeFragment(ListOfFavoriteArticlesFragment())
             true
         }
-        R.id.action_settings -> {
-            changeFragment(SettingsFragment())
-            true
-        }
         R.id.action_about_us -> {
             changeFragment(AboutUsFragment())
             true
@@ -170,8 +166,6 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
                 getString(R.string.articles_subtitle)
             is ArticleDetailsFragment -> supportActionBar?.subtitle =
                 getString(R.string.article_detail)
-            is SettingsFragment -> supportActionBar?.subtitle =
-                getString(R.string.settings_subtitle)
             is AboutUsTeamFragment -> supportActionBar?.subtitle = getString(R.string.about_us_subtitle)
         }
     }

@@ -4,10 +4,8 @@
     <string name="categories_subtitle">Categories</string>
     <string name="articles_subtitle">Articles</string>
     <string name="article_detail">Article</string>
-    <string name="settings_subtitle">Settings</string>
     <string name="favorites_subtitle">Favorites</string>
     <string name="about_us_subtitle">About us</string>
-    <string name="action_settings">Settings</string>
     <string name="action_about_us">About us</string>
     <string name="about_us_description">We are 4 students from MIAGE (Méthodes informatiques appliquées à la Gestion d\'entreprises). We made this project to work our abilities in android.</string>
     <string name="about_us_link_repo">https://github.com/jeremychoisy/android-newsletter</string>

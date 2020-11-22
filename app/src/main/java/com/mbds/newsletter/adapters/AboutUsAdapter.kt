@@ -20,7 +20,7 @@ class AboutUsAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
         return when(position){
             0 -> "Team"
-            else -> "Other"
+            else -> "Project"
         }
     }
 }

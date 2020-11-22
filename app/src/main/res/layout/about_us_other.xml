@@ -1,20 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ListOfArticlesFragment">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/about_us_description_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="AUTRE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.ListOfArticlesFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/about_us_title_repo_git"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:text="@string/git_repository"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/about_us_content_repo_git"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:autoLink="web"
+            android:text="@string/url_git"
+            app:layout_constraintStart_toStartOf="@+id/about_us_title_repo_git"
+            app:layout_constraintTop_toBottomOf="@+id/about_us_title_repo_git" />
+
+
+        <TextView
+            android:id="@+id/about_us_title_librairies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/librairies"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="@+id/about_us_content_repo_git"
+            app:layout_constraintTop_toBottomOf="@+id/about_us_content_repo_git" />
+
+        <TextView
+            android:id="@+id/about_us_content_librairies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/librairies_content"
+            app:layout_constraintStart_toStartOf="@+id/about_us_title_librairies"
+            app:layout_constraintTop_toBottomOf="@+id/about_us_title_librairies" />
+
+        <TextView
+            android:id="@+id/about_us_title_features"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:text="@string/features"
+            app:layout_constraintStart_toStartOf="@+id/about_us_content_librairies"
+            app:layout_constraintTop_toBottomOf="@+id/about_us_content_librairies" />
+
+        <TextView
+            android:id="@+id/about_us_content_git_features"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:autoLink="web"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/features_git_repository"
+            app:layout_constraintStart_toStartOf="@+id/about_us_title_features"
+            app:layout_constraintTop_toBottomOf="@+id/about_us_title_features" />
+
+        <TextView
+            android:id="@+id/about_us_content_features"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/features_content"
+            app:layout_constraintStart_toStartOf="@+id/about_us_title_features"
+            app:layout_constraintTop_toBottomOf="@+id/about_us_content_git_features" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -16,4 +16,13 @@
     <string name="no_article_found">We couldn\'t find any article matching your criteria</string>
     <string name="no_favorite_article_found">We couldn\'t find any favorite article</string>
     <string name="search">Search</string>
+    <string name="librairies">Librairies</string>
+    <string name="librairies_content">Librairies used : Retrofit, OkHTTP and Gson Room Persistence Library.</string>
+    <string name="url_git">https://github.com/jeremychoisy/android-newsletter</string>
+    <string name="git_repository">Git Repository</string>
+    <string name="features">Features</string>
+    <string name="features_git_repository">https://github.com/eamosse/android-mbds-2020/blob/main/mini_projet.md</string>
+    <string name="features_content">
+        \nAll the features shown in the git repo above have been implemented.\n\nNote a special feature on the filters by publisher, category and country which can be combined !
+    </string>
 </resources>

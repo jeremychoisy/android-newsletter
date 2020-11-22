@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.app.ActivityCompat.recreate
+import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 
 /**
@@ -39,7 +41,8 @@ class SettingsFragment : Fragment() {
         val theme = if (isLightTheme) android.R.style.Theme_Light else android.R.style.Theme_Black
         view.findViewById<SwitchCompat>(R.id.lightTheme).isChecked = isLightTheme
         view.findViewById<SwitchCompat>(R.id.darkTheme).isChecked = !isLightTheme
-        activity?.setTheme(theme);
+        .setTheme(theme)
+        activity?.recreate()
     }
 
 }

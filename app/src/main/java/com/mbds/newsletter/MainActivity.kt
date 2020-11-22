@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
     private lateinit var articleDAO: ArticleDao
     private lateinit var listOfFavoriteArticles: List<Article>
     private var hasDaoActionBeenDone: Boolean = false
+    private var isLightTheme: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         application.setTheme(android.R.style.Theme_Light)
@@ -177,6 +178,11 @@ class MainActivity : AppCompatActivity(), OnBackStackChangedListener {
         }
     }
 
+    /**
+     * Update favorite icon
+     * Fully icon displayed if article is already in favorite
+     * Otherwise display empty heart
+     */
     private fun updateFavoriteIcon() {
         var favoriteItem = menu?.findItem(R.id.action_set_favorite)
 

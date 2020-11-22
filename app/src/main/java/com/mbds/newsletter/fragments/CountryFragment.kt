@@ -31,15 +31,14 @@ class CountryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recycler_view)
         val countries = listOf<Country>(
-                //Argentin
-                Country("ar","https://img.freepik.com/vecteurs-libre/illustration-du-drapeau-argentin_53876-27120.jpg?size=626&ext=jpg"),
+                //Arabe
+                Country("ar","https://cdn.webshopapp.com/shops/94414/files/54952980/icone-drapeau-des-emirats-arabes-unis-telechargeme.jpg"),
                 //Allemand
                 Country("de","https://images-na.ssl-images-amazon.com/images/I/11ZRN4et7PL._AC_.jpg"),
                 //Anglais
                 Country("en","https://i.pinimg.com/originals/53/e8/7d/53e87dc1874e487d38eeba168d8ff54e.png"),
                 //Espagnol
                 Country("es","https://images-na.ssl-images-amazon.com/images/I/31HnPyXBMGL._AC_.jpg"),
-
                 //Francais
                 Country("fr","https://media.onnsports.com/product/bandera-francesa-lalizas-800x800.jpg"),
                 //?
@@ -68,7 +67,4 @@ class CountryFragment : Fragment() {
         recyclerView.adapter = adapterRecycler
     }
 
-//    override fun onClick(categoryName: String) {
-//        (activity as? MainActivity)?.changeFragment(ListOfArticlesFragment.newInstance())
-//    }
 }

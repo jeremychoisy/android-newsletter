@@ -83,5 +83,4 @@ class EditorsFragment : Fragment(), EditorAdapter.EditorCallback {
         }
     }
 
-
 }

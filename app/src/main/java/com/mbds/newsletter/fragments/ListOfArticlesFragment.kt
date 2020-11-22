@@ -85,35 +85,7 @@ class ListOfArticlesFragment : Fragment(), ArticleCallback {
                 }
             }
         })
-//        fetchData().observe(viewLifecycleOwner, Observer {
-//            it?.let { resource ->
-//                when (resource.status) {
-//                    SUCCESS -> {
-//                        recyclerView.visibility = View.VISIBLE
-//                        spinner.visibility = View.GONE
-//                        resource.data?.let { articles -> setArticlesList(articles) }
-//                    }
-//                    ERROR -> {
-//                        recyclerView.visibility = View.VISIBLE
-//                        spinner.visibility = View.GONE
-//                    }
-//                    LOADING -> {
-//                        spinner.visibility = View.VISIBLE
-//                        recyclerView.visibility = View.GONE
-//                    }
-//                }
-//            }
-//        })
     }
-//
-//    private fun fetchData() = liveData(Dispatchers.IO) {
-//        emit(Resource.loading(data = null))
-//        try {
-//            emit(Resource.success(data = repository.getArticles(category)))
-//        } catch (exception: Exception) {
-//            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-//        }
-//    }
 
     override fun getFavoriteArticles(): LiveData<List<Article>> {
         return articleDAO.getAll()

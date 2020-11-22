@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.mbds.newsletter.MainActivity
@@ -49,35 +50,14 @@ class HomeFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPager)
 
         view.findViewById<Button>(R.id.button_search).setOnClickListener {
-//            println("URL : " + createURL(true))
-            (activity as? MainActivity)?.changeFragment(
+            if(SelectedFilter.listCategory.isEmpty() && SelectedFilter.list.isEmpty()) {
+                Toast.makeText(context, "SELECT AT LEAST ONE EDITOR OR ONE CATEGORY", Toast.LENGTH_LONG).show()
+            } else {
+                (activity as? MainActivity)?.changeFragment(
                     ListOfArticlesFragment.newInstance()
-            )
+                )
+            }
         }
-
-
-//        view.findViewById<TabLayout>(R.id.tabLayout).addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-//
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                // Handle tab select
-//                println(tab.toString())
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//                // Handle tab reselect
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                // Handle tab unselect
-//            }
-//        })
-//        val button = view.findViewById<Button>(R.id.button)
-//        button.setOnClickListener {
-//            (activity as? MainActivity)?.changeFragment(CategoriesFragment())
-//        }
     }
-
-
-
 
 }

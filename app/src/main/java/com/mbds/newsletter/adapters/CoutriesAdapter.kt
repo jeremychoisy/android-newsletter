@@ -74,7 +74,7 @@ interface CountryCallback {
 
 fun convertCountry(countryISO: String): String {
     return when(countryISO) {
-        "ar" -> "Argentine"
+        "ar" -> "Arabe"
         "de" -> "Allemagne"
         "en" -> "Anglais"
         "es" -> "Espagne"

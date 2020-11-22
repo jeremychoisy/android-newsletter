@@ -42,7 +42,6 @@ class CategoriesAdapter(private val dataSet: List<Category>, private val callbac
                     SelectedFilter.listCategory.add(item.name)
                     root.setBackgroundColor(Color.LTGRAY)
                 }
-                //callback.onClick(item.name)
             }
         }
     }
@@ -59,7 +58,6 @@ class CategoriesAdapter(private val dataSet: List<Category>, private val callbac
         SelectedFilter.listPositionCategory.forEach {
             if(position==it){
                 holder.bind(dataSet[position])
-                //holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.graySelected))
                 holder.itemView.setBackgroundColor(Color.LTGRAY)
             }
         }
@@ -67,8 +65,5 @@ class CategoriesAdapter(private val dataSet: List<Category>, private val callbac
 
     override fun getItemCount(): Int = dataSet.size
 
-//    interface CategoryCallback {
-//        fun onClick(categoryName: String)
-//    }
 }
 
